@@ -1,0 +1,34 @@
+.u-section-1 {margin-top: 0; margin-bottom: 0; min-height: 1056px}
+.u-section-1 .u-image-1 {filter: brightness(0.6); width: calc(((100% - 1140px) / 2) + 570px); height: 526px; margin: -1px 0 0 auto}
+.u-section-1 .u-text-1 {margin: -365px calc(((100% - 1140px) / 2) + 248px) 0 calc(((100% - 1140px) / 2) + 112px)}
+.u-section-1 .u-text-2 {margin: 67px calc(((100% - 1140px) / 2) + 621px) 0 calc(((100% - 1140px) / 2) + 78px)}
+.u-section-1 .u-form-1 {height: 47px; width: 696px; margin: 190px calc(((100% - 1140px) / 2) + 222px) 0}
+.u-section-1 .u-input-1 {background-image: linear-gradient(white, #d9d9d9)}
+.u-section-1 .u-btn-1 {background-image: none; text-transform: uppercase; border-style: none}
+.u-section-1 .u-map-1 {width: 872px; height: 402px; margin: 40px auto 60px} 
+
+@media (max-width: 1199px){ .u-section-1 {min-height: 704px}
+.u-section-1 .u-image-1 {width: 645px; margin-right: calc(((100% - 1140px) / 2) + 100px)}
+.u-section-1 .u-text-1 {margin-left: calc(((100% - 940px) / 2) + 12px); margin-right: calc(((100% - 940px) / 2) + 148px)}
+.u-section-1 .u-text-2 {margin-left: calc(((100% - 940px) / 2)); margin-right: calc(((100% - 940px) / 2) + 499px)}
+.u-section-1 .u-form-1 {margin-right: calc(((100% - 940px) / 2) + 122px); margin-left: calc(((100% - 940px) / 2) + 122px)} }
+
+@media (max-width: 991px){ .u-section-1 {min-height: 539px}
+.u-section-1 .u-image-1 {margin-right: calc(((100% - 720px) / 2) + 75px)}
+.u-section-1 .u-text-1 {margin-left: calc(((100% - 720px) / 2)); margin-right: calc(((100% - 720px) / 2))}
+.u-section-1 .u-text-2 {margin-left: calc(((100% - 720px) / 2)); margin-right: calc(((100% - 720px) / 2) + 279px)}
+.u-section-1 .u-form-1 {margin-right: calc(((100% - 720px) / 2) + 12px); margin-left: calc(((100% - 720px) / 2) + 12px)}
+.u-section-1 .u-map-1 {width: 720px} }
+
+@media (max-width: 767px){ .u-section-1 {min-height: 396px}
+.u-section-1 .u-image-1 {width: 540px; height: 441px; margin-right: auto; margin-left: calc(((100% - 1140px) / 2) + 300px)}
+.u-section-1 .u-text-1 {margin-top: -280px; margin-left: calc(((100% - 540px) / 2)); margin-right: calc(((100% - 540px) / 2))}
+.u-section-1 .u-text-2 {margin-left: calc(((100% - 540px) / 2)); margin-right: calc(((100% - 540px) / 2) + 99px)}
+.u-section-1 .u-form-1 {margin-right: initial; margin-left: initial; width: auto}
+.u-section-1 .u-map-1 {width: 540px} }
+
+@media (max-width: 575px){ .u-section-1 {min-height: 233px}
+.u-section-1 .u-image-1 {width: 340px; height: 278px; margin-left: calc(((100% - 340px) / 2))}
+.u-section-1 .u-text-1 {margin-top: -117px; margin-left: calc(((100% - 340px) / 2)); margin-right: calc(((100% - 340px) / 2))}
+.u-section-1 .u-text-2 {margin-left: calc(((100% - 340px) / 2)); margin-right: calc(((100% - 340px) / 2))}
+.u-section-1 .u-map-1 {width: 340px} }

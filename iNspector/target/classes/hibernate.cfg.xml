@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/test1?serverTimezone=UTC</property>
+		<property name="connection.username">dbadmin</property>
+		<property name="connection.password">tortuga</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<mapping class="es.upm.dit.isst.inspector.model.Customer" />
+		<mapping class="es.upm.dit.isst.inspector.model.Inspector" />
+		<mapping class="es.upm.dit.isst.inspector.model.Inspeccion" />
+		<mapping class="es.upm.dit.isst.inspector.model.Incidencia" />
+		<mapping class="es.upm.dit.isst.inspector.model.Local" />
+		<mapping class="es.upm.dit.isst.inspector.model.Admin" />
+	</session-factory>
+</hibernate-configuration>
