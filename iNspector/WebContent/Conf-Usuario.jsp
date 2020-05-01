@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
      <%@ page session="true"%>
 <!DOCTYPE html>
 <html style="font-size: 16px;">
@@ -70,7 +72,7 @@
           <a href="Principal.jsp">iNspector</a>
         </h1>
        <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-          <form action="Buscador" method="POST">
+          <form action="BuscadorLocalesServlet">
             <div class="u-form-group u-form-name">
               <label for="rotulo" class="u-form-control-hidden u-label">Restaurante</label>
               <input type="text" placeholder="Busca un restaurante..." id="rotulo" name="rotulo" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-gradient u-input u-input-round u-input-1" required="">
@@ -94,9 +96,8 @@
                 <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640"></div>
       
              <%
-		String username3 =(String)request.getSession().getAttribute("Usuario");
-        String name3= (String)request.getSession().getAttribute("Nombre");
-        String mail3= (String)request.getSession().getAttribute("Mail");
+        String name3= (String)request.getSession().getAttribute("Name");
+        String mail3= (String)request.getSession().getAttribute("Email");
         String password3= (String)request.getSession().getAttribute("Password");
         %>
 
@@ -367,30 +368,24 @@
         <img src="images/herramienta.png" alt="" class="u-image u-image-default u-image-1" data-image-width="225" data-image-height="225">
         <div class="u-form u-form-1">
       
-         <form action="MisDatos" method="POST">
+         <form action="FormEditaCustomer">
                 <div class="u-form-group u-form-name">
                 <p class="u-align-center u-large-text u-text u-text-font u-text-variant u-text-2">Nombre: </p>
-                  <label for="name1" class="u-form-control-hidden u-label">Nombre</label>
-                  <input type="text" value=<%=name3 %> id="name1" name="name1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                  <label for="name" class="u-form-control-hidden u-label">Nombre</label>
+                  <input type="text" value=<%=name3 %> id="name" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                 </div>
-                 <div class="u-form-group u-form-name">
-                <p class="u-align-center u-large-text u-text u-text-font u-text-variant u-text-2">Usuario: </p>
-                  <label for="username1" class="u-form-control-hidden u-label">Usuario</label>
-                  <input type="text" value=<%=username3 %> id="username1" name="username1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                </div> 
                 <div class="u-form-group u-form-name">
                 <p class="u-align-center u-large-text u-text u-text-font u-text-variant u-text-2">Mail: </p>
-                  <label for="mail1" class="u-form-control-hidden u-label">Mail</label>
-                  <input type="text" value=<%=mail3 %> id="mail1" name="mail1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                  <label for="email" class="u-form-control-hidden u-label">Mail</label>
+                  <input type="text" value=<%=mail3 %> id="email" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                 </div>
                 <div class="u-form-address u-form-group u-form-group-2">
                 <p class="u-align-center u-large-text u-text u-text-font u-text-variant u-text-2">Contraseña: </p>
-                  <label for="password1" class="u-form-control-hidden u-label">Password</label>
-                  <input type="password" value=<%=password3%> id="password1" name="password1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
+                  <label for="password" class="u-form-control-hidden u-label">Password</label>
+                  <input type="password" value=<%=password3%> id="password" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" >
                 </div>
                 <div class="u-align-center u-form-group u-form-submit">
-              <a href="BienEditado.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style u-palette-4-base u-btn-1">Editar</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
+                  <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Editar</button>
             </div>
                 
                 <input type="hidden" value="" name="recaptchaResponse">

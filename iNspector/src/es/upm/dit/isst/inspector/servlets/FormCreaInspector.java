@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.inspector.dao.InspectorDAOImplementation;
+import es.upm.dit.isst.inspector.model.Inspector;
+
 /**
  * Servlet implementation class FormCreaInspector
  */
@@ -25,9 +28,22 @@ public class FormCreaInspector extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
+		String name = req.getParameter("name");
+		String autorizado = "no";
+		
+		Inspector inspector = new Inspector();
+		inspector.setEmail(email);
+		inspector.setPassword(password);
+		inspector.setName(name);
+		inspector.setAutorizado(autorizado);
+		
+		InspectorDAOImplementation.getInstance().create(inspector);
+		req.getSession().setAttribute("inspector", InspectorDAOImplementation.getInstance().read(inspector.getEmail()));
+		req.getSession().setAttribute("Registrado", "inspector_noautorizado");
+		getServletContext().getRequestDispatcher("/Conf-Inspector.jsp").forward(req,resp);	
 	}
 
 	/**

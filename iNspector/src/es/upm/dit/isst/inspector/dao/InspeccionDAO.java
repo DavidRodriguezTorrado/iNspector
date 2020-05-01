@@ -1,6 +1,7 @@
 package es.upm.dit.isst.inspector.dao;
 
 import java.util.Collection;
+import java.util.List;
 
 import es.upm.dit.isst.inspector.model.Inspeccion;
 
@@ -11,5 +12,7 @@ public interface InspeccionDAO {
 	public void update(Inspeccion inspeccion);
 	public void delete(Inspeccion inspeccion);
 	public Collection<Inspeccion> readAll();
+	public List<String> buscador(String rotulo);
+	public Inspeccion ultimaInspeccion(Inspeccion inspeccion);
 
 }

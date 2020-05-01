@@ -12,4 +12,5 @@ public interface CustomerDAO {
 	public void delete(Customer customer);
 	public Collection<Customer> readAll();
 	public Customer login(String email, String psd);
+	
 }

@@ -2,6 +2,7 @@ package es.upm.dit.isst.inspector.dao;
 
 import java.util.Collection;
 
+import es.upm.dit.isst.inspector.model.Customer;
 import es.upm.dit.isst.inspector.model.Inspector;
 
 public interface InspectorDAO {

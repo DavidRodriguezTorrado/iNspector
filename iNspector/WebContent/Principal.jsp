@@ -43,6 +43,7 @@
            String reg =(String)s.getAttribute("Registrado");
            if(reg != "si" && reg!="inspector" && reg!="admin"){
            s.setAttribute("Registrado", "no");
+           reg = "no";
            }
            
            %>
@@ -90,7 +91,7 @@
           <a href="Principal.jsp">iNspector</a>
         </h1>
         <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-          <form action="Buscador" method="POST">
+          <form action="BuscadorLocalesServlet" >
             <div class="u-form-group u-form-name">
               <label for="rotulo" class="u-form-control-hidden u-label">Restaurante</label>
               <input type="text" placeholder="Busca un restaurante..." id="rotulo" name="rotulo" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-gradient u-input u-input-round u-input-1" required="">
@@ -109,7 +110,7 @@
         <br>¡Así podrás conocer cómo de seguro es para ti y para los tuyos!
       </p>
       <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-        <form action="Buscador" method="POST">
+        <form action="BuscadorLocalesServlet">
           <div class="u-form-group u-form-name">
             <label for="rotulo" class="u-form-control-hidden u-label">Restaurante</label>
             <input type="text" placeholder="Busca un restaurante..." id="rotulo" name="rotulo" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-gradient u-input u-input-round u-input-1" required="">
@@ -122,7 +123,7 @@
       </div>
       <div class="u-grey-light-2 u-map u-map-1">
         <div class="embed-responsive">
-          <iframe class="embed-responsive-item" src="//maps.google.com/maps?output=embed&amp;q=Madrid&amp;z=10&amp;t=m" data-map="JTdCJTIycG9zaXRpb25UeXBlJTIyJTNBJTIybWFwLXBvaW50JTIyJTJDJTIyYWRkcmVzcyUyMiUzQSUyMk1hZHJpZCUyMiUyQyUyMnpvb20lMjIlM0ExMCUyQyUyMnR5cGVJZCUyMiUzQSUyMnJvYWQlMjIlMkMlMjJsYW5nJTIyJTNBJTIyJTIyJTdE"></iframe>
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PeaxOLPzoeunB4J8u_OzO2eCMnPPoMa2" width="640" height="480"></iframe>
         </div>
       </div>
     </section>
@@ -130,15 +131,7 @@
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-24d6"><div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">
         <span class="u-icon u-align-center u-icon-circle u-text-black u-icon-1">
-        <% if(reg=="no"){ %>
-        <a href="LoginAdministracion.jsp" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">Administración
-            </a>
-            <%} %>
-            
-         <% if(reg=="admin"){ %>
-        <a href="Conf--Administrador.jsp" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">Administración
-            </a>
-            <%} %>
+  
         </span>
         <p class="u-text u-text-default u-text-1"></p>
       </div></footer>

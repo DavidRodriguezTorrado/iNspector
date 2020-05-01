@@ -22,7 +22,7 @@ public class Inspector implements Serializable {
 	private String email;
 	private String name;
 	private String password;
-	private boolean autorizado;
+	private String autorizado;
 
 	@OneToMany(mappedBy = "inspector")
 	private Collection<Inspeccion> inspeccioneshechas;
@@ -58,7 +58,7 @@ public class Inspector implements Serializable {
 		return password;
 	}
 
-	public boolean isAutorizado() {
+	public String getAutorizado() {
 		return autorizado;
 	}
 
@@ -90,7 +90,7 @@ public class Inspector implements Serializable {
 		this.password = password;
 	}
 
-	public void setAutorizado(boolean autorizado) {
+	public void setAutorizado(String autorizado) {
 		this.autorizado = autorizado;
 	}
 

@@ -1,5 +1,11 @@
 package es.upm.dit.isst.inspector.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +33,18 @@ public class CustomerDAOImplementation implements CustomerDAO {
 	public void create(Customer customer) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.save(customer);
+		String email = customer.getEmail();
+		String name = customer.getName();
+		String password = customer.getPassword();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			PreparedStatement ps =con.prepareStatement("INSERT INTO CUSTOMERS " +
+					"(email, name, password) " +
+					"VALUES ('" + email + "', '" + name + "', '" + password + "')");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
 
@@ -38,19 +55,43 @@ public class CustomerDAOImplementation implements CustomerDAO {
 	public Customer read(String email) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Customer p = session.get(Customer.class, email);
+		Customer cust = new Customer();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			Statement s = con.createStatement();
+			ResultSet res = s.executeQuery("SELECT * FROM CUSTOMERS WHERE email= '" +email+"'");
+			if(res.next()) {
+				
+				cust.setEmail(res.getString(1));
+				cust.setName(res.getString(2));
+				cust.setPassword(res.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
-		return p;
+		return cust;
 	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Customer customer) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(customer);
+		String email = customer.getEmail();
+		String name = customer.getName();
+		String password = customer.getPassword();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			PreparedStatement ps = con.prepareStatement("UPDATE customers SET email='"+email+"', name='"+name+"', password='"+password+"'" 
+					+ "WHERE email='"+email+"'");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
+		
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -74,32 +115,26 @@ public class CustomerDAOImplementation implements CustomerDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Customer login(String email, String password) {
-		/*
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Customer p =null;
-		Query q = session.createQuery("select * from Customer p where p.email = :email and p.password = :password");
-		q.setParameter("email", email);
-		q.setParameter("password", password);
-		List<Customer> cust = q.getResultList();
-		if (cust.size() > 0)
-			p = (Customer) (q.getResultList().get(0));
+		Customer cust= new Customer();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			Statement s = con.createStatement();
+			ResultSet res = s.executeQuery("SELECT * FROM CUSTOMERS WHERE email= '" +email+"' and password= '" + password+ "'");
+			if(res.next()) {
+			cust.setEmail(res.getString(1));
+			cust.setName(res.getString(2));
+			cust.setPassword(res.getString(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
-		return p; */
-		Session session = SessionFactoryService.get().openSession();
-		session.beginTransaction();
-		Customer p =null;
-		Query q = session.createQuery("select * from Customer p where p.email = :email and p.password = :password");
-		q.setParameter("email", email);
-		q.setParameter("password", password);
-		List<Customer> cust = q.getResultList();
-		if (cust.size() > 0)
-			p = (Customer) (q.getResultList().get(0));
-		session.getTransaction().commit();
-		session.close();
-		return p;
-		
+		return cust;
+
 	}
 
 }

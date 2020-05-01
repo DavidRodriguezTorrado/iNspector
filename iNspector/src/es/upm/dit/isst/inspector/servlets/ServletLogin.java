@@ -16,6 +16,7 @@ import es.upm.dit.isst.inspector.model.Customer;
 import es.upm.dit.isst.inspector.model.Inspector;
 
 
+
 /**
  * Servlet implementation class Login
  */
@@ -39,23 +40,40 @@ public class ServletLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		List<Customer> customers = (List<Customer>)CustomerDAOImplementation.getInstance().readAll();
-		List<Inspector> inspectores = (List<Inspector>) InspectorDAOImplementation.getInstance().readAll();
+		//List<Customer> customers = (List<Customer>)CustomerDAOImplementation.getInstance().readAll();
+		//List<Inspector> inspectores = (List<Inspector>) InspectorDAOImplementation.getInstance().readAll();
 		Inspector inspector = InspectorDAOImplementation.getInstance().login(email, password);
 		Customer customer = CustomerDAOImplementation.getInstance().login(email, password);
+		System.out.println(customer);
+		System.out.println(inspector);
 		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
 			req.getSession().setAttribute("admin", true);
-			req.getSession().setAttribute("customers", customers);
-			req.getSession().setAttribute("inspectores", inspectores);
-			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
-		} else if ( null != customer ) {
+			//req.getSession().setAttribute("customers", customers);
+			//req.getSession().setAttribute("inspectores", inspectores);
+			getServletContext().getRequestDispatcher("/Conf-Administrador.jsp").forward(req,resp);
+		} else if ( null != customer.getEmail() ) {
 			req.getSession().setAttribute("customer", CustomerDAOImplementation.getInstance().read(customer.getEmail()));
+			req.getSession().setAttribute("Name", customer.getName());
+			req.getSession().setAttribute("Email", customer.getEmail());
+			req.getSession().setAttribute("Password", customer.getPassword());
+			req.getSession().setAttribute("Registrado", "si");
 			getServletContext().getRequestDispatcher("/Conf-Usuario.jsp").forward(req,resp);
-		} else if ( null != inspector ) {
+		} else if ( null != inspector.getEmail() ) {
 			req.getSession().setAttribute("inspector", InspectorDAOImplementation.getInstance().read(inspector.getEmail()));
-			getServletContext().getRequestDispatcher("/Profesor.jsp").forward(req,resp);
+			req.getSession().setAttribute("Name", inspector.getName());
+			req.getSession().setAttribute("Email", inspector.getEmail());
+			req.getSession().setAttribute("Password", inspector.getPassword());
+			req.getSession().setAttribute("Autorizado", inspector.getAutorizado());
+			String autorizado = (String)req.getSession().getAttribute("Autorizado");
+			System.out.println(autorizado);
+				req.getSession().setAttribute("Registrado", "inspector");	
+				if(autorizado == "no") {
+					req.getSession().setAttribute("Registrado", "inspector_noautorizado");
+			}
+			getServletContext().getRequestDispatcher("/Conf-Inspector.jsp").forward(req,resp);
 		} else {
 			getServletContext().getRequestDispatcher("/MalLog.jsp").forward(req,resp);
+			req.getSession().setAttribute("Registrado", "no");
 		}
 	}
 

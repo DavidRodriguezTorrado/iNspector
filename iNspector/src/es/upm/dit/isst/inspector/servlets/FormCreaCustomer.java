@@ -1,8 +1,7 @@
 package es.upm.dit.isst.inspector.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +31,7 @@ public class FormCreaCustomer extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    @SuppressWarnings("unchecked")
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
@@ -44,11 +43,9 @@ public class FormCreaCustomer extends HttpServlet {
 		customer.setName(name);
 		
 		CustomerDAOImplementation.getInstance().create(customer);
-		List<Customer> lp = new ArrayList<Customer>();
-		lp.addAll((List<Customer>)req.getSession().getAttribute("customers"));
-		lp.add (customer);
-		req.getSession().setAttribute("customers", lp);
-		getServletContext().getRequestDispatcher("/Principal.jsp").forward(req,resp);
+		req.getSession().setAttribute("customer", CustomerDAOImplementation.getInstance().read(customer.getEmail()));
+		req.getSession().setAttribute("Registrado", "si");
+		getServletContext().getRequestDispatcher("/Conf-Usuario.jsp").forward(req,resp);
 	
 	}
 

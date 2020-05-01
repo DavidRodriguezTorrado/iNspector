@@ -50,7 +50,7 @@
 		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
-		 <% if(reg=="inspector"){ %>
+		 <% if(reg=="inspector" || reg=="inspector_noautorizado"){ %>
             <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
 </li></ul>
 	
@@ -71,7 +71,7 @@
           <a href="Principal.jsp">iNspector</a>
         </h1>
         <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-          <form action="Buscador" method="POST">
+          <form action="BuscadorLocalesServlet">
             <div class="u-form-group u-form-name">
               <label for="rotulo" class="u-form-control-hidden u-label">Restaurante</label>
               <input type="text" placeholder="Busca un restaurante..." id="rotulo" name="rotulo" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-gradient u-input u-input-round u-input-1" required="">
@@ -101,13 +101,16 @@
                 </div>
                      
                 <div class="u-align-center u-form-group u-form-submit">
-                  <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Registrar</button>
+                  <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Acceder</button>
                 </div>
                 
                 <input type="hidden" value="" name="recaptchaResponse">
               </form>
             </div>
             <a href="Registrarse.jsp" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">¿Aún no eres miembro?
+              <br>¡Haz click aquí para registrarte!
+            </a>
+             <a href="RegistrarseInspector.jsp" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">¿Eres un nuevo inspector?
               <br>¡Haz click aquí para registrarte!
             </a>
           </div>

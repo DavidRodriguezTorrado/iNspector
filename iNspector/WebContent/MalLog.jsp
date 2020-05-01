@@ -67,7 +67,7 @@
           <a href="Principal.jsp">iNspector</a>
         </h1>
         <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-          <form action="Buscador" method="POST">
+          <form action="BuscadorLocalesServlet">
             <div class="u-form-group u-form-name">
               <label for="rotulo" class="u-form-control-hidden u-label">Restaurante</label>
               <input type="text" placeholder="Busca un restaurante..." id="rotulo" name="rotulo" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-gradient u-input u-input-round u-input-1" required="">
