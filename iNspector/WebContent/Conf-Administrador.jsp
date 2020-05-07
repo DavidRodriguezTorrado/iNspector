@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -42,12 +45,78 @@
 </defs></svg>
             </a>
           </div>
-          <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Login.jsp" style="padding: 10px;">Login</a>
-</li></ul>
-			<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
-		</li></ul>
-          </div>
+<%
+					HttpSession s = request.getSession();
+					String reg = (String) s.getAttribute("Registrado");
+				%>
+				<div class="u-custom-menu u-nav-container">
+					<%
+						if (reg == "no") {
+					%>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Login.jsp" style="padding: 10px;">Login</a></li>
+					</ul>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Login.jsp" style="padding: 10px;">Perfil</a></li>
+					</ul>
+					<%
+						}
+					%>
+
+					<%
+						if (reg == "si") {
+					%>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Logout.jsp" style="padding: 10px;">Logout</a></li>
+					</ul>
+
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a></li>
+					</ul>
+					<%
+						}
+					%>
+					<%
+						if (reg == "inspector" || reg == "inspector_noautorizado") {
+					%>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Logout.jsp" style="padding: 10px;">Logout</a></li>
+					</ul>
+
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Conf-Inspector.jsp" style="padding: 10px;">Perfil</a></li>
+					</ul>
+					<%
+						}
+					%>
+					<%
+						if (reg == "admin") {
+					%>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Logout.jsp" style="padding: 10px;">Logout</a></li>
+					</ul>
+
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Conf-Administrador.jsp" style="padding: 10px;">Perfil</a></li>
+					</ul>
+					<% } %>
+					</div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-menu-close"></div>
@@ -73,8 +142,10 @@
           </form>
         </div>
       </div></header>
+
     <section class="u-align-center u-clearfix u-valign-middle u-section-1" id="sec-8c0b">
-      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+
+		<div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
         <div class="u-layout">
           <div class="u-layout-col">
             <div class="u-container-style u-gradient u-layout-cell u-left-cell u-right-cell u-size-30 u-layout-cell-1">
@@ -96,102 +167,61 @@
     </section>
     <section class="u-align-left u-clearfix u-section-2" id="sec-581f">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Inspectores pendientes</h1>
+        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Inspectores pendientes de autorizar</h1>
         <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-align-left u-container-style u-expand-resize u-layout-cell u-left-cell u-size-13 u-layout-cell-1">
                 <div class="u-container-layout u-valign-middle u-container-layout-1" src="">
-                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640" data-animation-name="jackInTheBox" data-animation-duration="1000" data-animation-delay="0" data-animation-direction=""></div>
                 </div>
               </div>
               <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-47 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2" data-image-width="2000" data-image-height="1333">
                   <span class="u-icon u-icon-circle u-text-palette-5-base u-icon-1">
-                    <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 31.357 31.357" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b0e1"></use></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-b0e1" x="0px" y="0px" viewBox="0 0 31.357 31.357" style="enable-background:new 0 0 31.357 31.357;" xml:space="preserve" class="u-svg-content"><g><path d="M15.255,0c5.424,0,10.764,2.498,10.764,8.473c0,5.51-6.314,7.629-7.67,9.62c-1.018,1.481-0.678,3.562-3.475,3.562   c-1.822,0-2.712-1.482-2.712-2.838c0-5.046,7.414-6.188,7.414-10.343c0-2.287-1.522-3.643-4.066-3.643   c-5.424,0-3.306,5.592-7.414,5.592c-1.483,0-2.756-0.89-2.756-2.584C5.339,3.683,10.084,0,15.255,0z M15.044,24.406   c1.904,0,3.475,1.566,3.475,3.476c0,1.91-1.568,3.476-3.475,3.476c-1.907,0-3.476-1.564-3.476-3.476   C11.568,25.973,13.137,24.406,15.044,24.406z"></path>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                   </span>
-                  <h3 class="u-text u-text-2">Inspector x</h3>
-                  <p class="u-text u-text-default u-text-3">Haz click en añadir inspector si deseas validar al inspector</p>
+                  		<table class="u-align-center">
+			<tr>
+				<th> </th>
+				<th>NOMBRE</th>
+				<th>CORREO</th>
+
+			</tr>
+			<c:forEach items="${admin.getInspectoresPorAutorizar()}" var="item">
+				<tr>
+					<td>                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640" data-animation-name="jackInTheBox" data-animation-duration="1000" data-animation-delay="0" data-animation-direction=""></div>
+					</td>
+					<td>${item.name}</td>
+					<td>${item.email}</td>
+					<td>
+				<form action="FormAutorizar" >
+					<input type="hidden" name="email" value="${item.email}" />
+        			<button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style" >Autorizar</button>
+        		</form>
+        		</td>
+				</tr>
+			</c:forEach>
+		</table>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <a href="#" class="u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1" data-animation-name="jello" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Añadir inspector</a>
       </div>
     </section>
-    <section class="u-align-left u-clearfix u-section-3" id="sec-d9e3">
-      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-expand-resize u-layout-cell u-left-cell u-size-13 u-layout-cell-1" data-animation-name="jackInTheBox" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
-                <div class="u-container-layout u-valign-middle u-container-layout-1" src="">
-                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640"></div>
-                </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-47 u-layout-cell-2" data-animation-name="flash" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
-                <div class="u-container-layout u-container-layout-2" data-image-width="2000" data-image-height="1333">
-                  <span class="u-icon u-icon-circle u-text-palette-5-base u-icon-1">
-                    <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 31.357 31.357" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b0e1"></use></svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-b0e1" x="0px" y="0px" viewBox="0 0 31.357 31.357" style="enable-background:new 0 0 31.357 31.357;" xml:space="preserve" class="u-svg-content"><g><path d="M15.255,0c5.424,0,10.764,2.498,10.764,8.473c0,5.51-6.314,7.629-7.67,9.62c-1.018,1.481-0.678,3.562-3.475,3.562   c-1.822,0-2.712-1.482-2.712-2.838c0-5.046,7.414-6.188,7.414-10.343c0-2.287-1.522-3.643-4.066-3.643   c-5.424,0-3.306,5.592-7.414,5.592c-1.483,0-2.756-0.89-2.756-2.584C5.339,3.683,10.084,0,15.255,0z M15.044,24.406   c1.904,0,3.475,1.566,3.475,3.476c0,1.91-1.568,3.476-3.475,3.476c-1.907,0-3.476-1.564-3.476-3.476   C11.568,25.973,13.137,24.406,15.044,24.406z"></path>
-</g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                  </span>
-                  <h3 class="u-text u-text-1">Inspector x</h3>
-                  <p class="u-text u-text-default u-text-2">Haz click en añadir inspector si deseas validar al inspector</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1" data-animation-name="jello" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Añadir inspector</a>
-      </div>
-    </section>
-    <section class="u-align-left u-clearfix u-section-4" id="sec-96ac">
-      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-expand-resize u-layout-cell u-left-cell u-size-13 u-layout-cell-1" data-animation-name="jackInTheBox" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
-                <div class="u-container-layout u-valign-middle u-container-layout-1" src="">
-                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640"></div>
-                </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-47 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2" data-image-width="2000" data-image-height="1333">
-                  <span class="u-icon u-icon-circle u-text-palette-5-base u-icon-1">
-                    <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 31.357 31.357" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b0e1"></use></svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-b0e1" x="0px" y="0px" viewBox="0 0 31.357 31.357" style="enable-background:new 0 0 31.357 31.357;" xml:space="preserve" class="u-svg-content"><g><path d="M15.255,0c5.424,0,10.764,2.498,10.764,8.473c0,5.51-6.314,7.629-7.67,9.62c-1.018,1.481-0.678,3.562-3.475,3.562   c-1.822,0-2.712-1.482-2.712-2.838c0-5.046,7.414-6.188,7.414-10.343c0-2.287-1.522-3.643-4.066-3.643   c-5.424,0-3.306,5.592-7.414,5.592c-1.483,0-2.756-0.89-2.756-2.584C5.339,3.683,10.084,0,15.255,0z M15.044,24.406   c1.904,0,3.475,1.566,3.475,3.476c0,1.91-1.568,3.476-3.475,3.476c-1.907,0-3.476-1.564-3.476-3.476   C11.568,25.973,13.137,24.406,15.044,24.406z"></path>
-</g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                  </span>
-                  <h3 class="u-text u-text-1">Inspector x</h3>
-                  <p class="u-text u-text-default u-text-2">Haz click en añadir inspector si deseas validar al inspector</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1" data-animation-name="jello" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Añadir inspector</a>
-      </div>
-    </section>
+
+
     <section class="u-clearfix u-image u-shading u-section-5" id="sec-462c" data-image-width="1280" data-image-height="720">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Añadir Local</h1>
         <span class="u-icon u-icon-circle u-text-palette-1-base u-icon-1" data-animation-name="rubberBand" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
-          <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-0f91"></use></svg>
+         <a href="CrearLocal.jsp" class="u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1" data-animation-name="jello" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Añadir nuevo local</a>
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" id="svg-0f91" class="u-svg-content"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1="0" y2="512"><stop offset="0" stop-color="#2af598"></stop><stop offset="1" stop-color="#009efd"></stop>
 </linearGradient><path d="m437.019531 74.980469c-48.351562-48.351563-112.640625-74.980469-181.019531-74.980469s-132.667969 26.628906-181.019531 74.980469c-48.351563 48.351562-74.980469 112.640625-74.980469 181.019531s26.628906 132.667969 74.980469 181.019531c48.351562 48.351563 112.640625 74.980469 181.019531 74.980469s132.667969-26.628906 181.019531-74.980469c48.351563-48.351562 74.980469-112.640625 74.980469-181.019531s-26.628906-132.667969-74.980469-181.019531zm-181.019531 397.019531c-119.101562 0-216-96.898438-216-216s96.898438-216 216-216 216 96.898438 216 216-96.898438 216-216 216zm20-236.019531h90v40h-90v90h-40v-90h-90v-40h90v-90h40zm0 0" fill="url(#a)"></path></svg>
         </span>
-        <div class="u-form u-form-1">
-          <form action="MostrarAutorizar" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-            <div class="u-align-center u-form-group u-form-submit">
-                  <a href="InspectoresPorAutorizar.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Acceder</a>
-                  <input type="submit" value="submit" class="u-form-control-hidden">
-                </div>
-          </form>
-        </div>
+
       </div>
     </section>
     

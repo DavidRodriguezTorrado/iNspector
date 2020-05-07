@@ -2,10 +2,10 @@ package es.upm.dit.isst.inspector.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -25,16 +25,16 @@ public class Inspector implements Serializable {
 	private String autorizado;
 
 	@OneToMany(mappedBy = "inspector")
-	private Collection<Inspeccion> inspeccioneshechas;
+	private List<Inspeccion> inspeccioneshechas;
 
 	@OneToMany(mappedBy = "inspector")
-	private Collection<Inspeccion> inspeccionesprogramadas;
+	private List<Inspeccion> inspeccionesprogramadas;
 
 	@OneToMany(mappedBy = "inspector")
-	private Collection<Incidencia> incidenciasarevisar;
+	private List<Incidencia> incidenciasarevisar;
 
 	@OneToMany(mappedBy = "inspector")
-	private Collection<Incidencia> incidenciasrevisadas;
+	private List<Incidencia> incidenciasrevisadas;
 	
 	@ManyToOne
 	private Inspector inspector;
@@ -62,7 +62,7 @@ public class Inspector implements Serializable {
 		return autorizado;
 	}
 
-	public Collection<Inspeccion> getInspeccioneshechas() {
+	public List<Inspeccion> getInspeccioneshechas() {
 		return inspeccioneshechas;
 	}
 
@@ -94,19 +94,19 @@ public class Inspector implements Serializable {
 		this.autorizado = autorizado;
 	}
 
-	public void setInspeccioneshechas(Collection<Inspeccion> inspeccioneshechas) {
+	public void setInspeccioneshechas(List<Inspeccion> inspeccioneshechas) {
 		this.inspeccioneshechas = inspeccioneshechas;
 	}
 
-	public void setInspeccionesprogramadas(Collection<Inspeccion> inspeccionesprogramadas) {
+	public void setInspeccionesprogramadas(List<Inspeccion> inspeccionesprogramadas) {
 		this.inspeccionesprogramadas = inspeccionesprogramadas;
 	}
 
-	public void setIncidenciasarevisar(Collection<Incidencia> incidenciasarevisar) {
+	public void setIncidenciasarevisar(List<Incidencia> incidenciasarevisar) {
 		this.incidenciasarevisar = incidenciasarevisar;
 	}
 
-	public void setIncidenciasrevisadas(Collection<Incidencia> incidenciasrevisadas) {
+	public void setIncidenciasrevisadas(List<Incidencia> incidenciasrevisadas) {
 		this.incidenciasrevisadas = incidenciasrevisadas;
 	}
 

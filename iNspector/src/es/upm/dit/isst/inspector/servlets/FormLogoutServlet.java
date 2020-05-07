@@ -32,6 +32,29 @@ public class FormLogoutServlet extends HttpServlet {
 		req.getSession().removeAttribute("customers");
 		req.getSession().removeAttribute("inspector");
 		req.getSession().removeAttribute("customer");
+		req.getSession().removeAttribute("rotulos");
+		req.getSession().removeAttribute("Email");
+		req.getSession().removeAttribute("Password");
+		req.getSession().removeAttribute("Name");
+		req.getSession().removeAttribute("Incidencia");
+		req.getSession().removeAttribute("Fecha");
+		req.getSession().removeAttribute("Local");
+		req.getSession().removeAttribute("CustomerIncidencia");
+		req.getSession().removeAttribute("InspectorIncidencia");
+		req.getSession().removeAttribute("Inspected");
+		req.getSession().setAttribute("Registrado", "no");
+		req.getSession().removeAttribute("Comentarios");
+		req.getSession().removeAttribute("Resultado");
+		req.getSession().removeAttribute("rotulo");
+		req.getSession().removeAttribute("inspeccion");
+		req.getSession().removeAttribute("inspector");
+		req.getSession().removeAttribute("Autorizado");
+		req.getSession().removeAttribute("Inspeccion");
+		req.getSession().removeAttribute("InspectorInspeccion");
+		req.getSession().removeAttribute("Incidencia1");
+		req.getSession().removeAttribute("Incidencia2");
+		req.getSession().removeAttribute("Incidencia3");
+		
               req.getSession().invalidate();
 		getServletContext().getRequestDispatcher("/Principal.jsp").forward(req,resp);	}
 

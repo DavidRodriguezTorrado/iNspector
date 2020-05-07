@@ -79,16 +79,21 @@
           </form>
         </div>
       </div></header>
+       <%
+		String local =(String)request.getSession().getAttribute("Local");
+        %>
       <section class="u-clearfix u-image u-shading u-section-1" src="" id="sec-87d6">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <div class="u-container-style u-group u-opacity u-opacity-70 u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1"></h3>
- <p class="u-align-center u-text u-text-default u-text-grey-75 u-text-2">   Su incidencia sobre ${inc.local} ha sido correctamente registrada </p>
+            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1"> 
+            
+            Su incidencia sobre <%=local %> ha sido correctamente registrada </h3>
+ <p class="u-align-center u-text u-text-default u-text-grey-75 u-text-2"> La incidencia ha sido asignada a un inspector para que la revise   </p>
              
                        
                 <div class="u-align-center u-form-group u-form-submit">
- <input type="button" value="Volver"class="u-align-center u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style u-palette-4-base u-btn-1" onclick="history.back()">
+            <a href="Conf-Usuario.jsp" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">Volver</a>
                   
                   <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>

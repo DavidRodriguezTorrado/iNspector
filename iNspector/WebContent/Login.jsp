@@ -58,6 +58,13 @@
 		</li></ul>
 		<% } %>
           </div>
+          		 <% if(reg=="admin"){ %>
+            <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
+</li></ul>
+	
+		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Administrador.jsp" style="padding: 10px;">Perfil</a>
+		</li></ul>
+		<% } %>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-menu-close"></div>
@@ -87,8 +94,8 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-align-left u-group u-opacity u-opacity-70 u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1"> <br>Usuario</h3>
-            <p class="u-align-center u-text u-text-default u-text-grey-75 u-text-2">Navegar identificado te permite disfrutar de ventajas únicas para nuestros usuarios, como añadir tus restaurantes favoritos y reportar incidencias para ayudar a toda la comunidad.</p>
+            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1"> <br>Bienvenido</h3>
+            <p class="u-align-center u-text u-text-default u-text-grey-75 u-text-2">Navegar identificado te permite disfrutar de ventajas únicas para nuestros usuarios.</p>
             <div class="u-form u-form-1">
               <form action="ServletLogin">
                 <div class="u-form-group u-form-name">

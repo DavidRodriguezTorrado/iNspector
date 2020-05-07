@@ -56,6 +56,39 @@
 		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
+							
+					<%
+						if (reg == "inspector" || reg == "inspector_noautorizado") {
+					%>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Logout.jsp" style="padding: 10px;">Logout</a></li>
+					</ul>
+
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Conf-Inspector.jsp" style="padding: 10px;">Perfil</a></li>
+					</ul>
+					<%
+						}
+					%>
+					<%
+						if (reg == "admin") {
+					%>
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Logout.jsp" style="padding: 10px;">Logout</a></li>
+					</ul>
+
+					<ul class="u-nav u-spacing-0 u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+							href="Conf-Administrador.jsp" style="padding: 10px;">Perfil</a></li>
+					</ul>
+					<% } %>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -82,20 +115,20 @@
           </form>
         </div>
       </div></header>
-    <section class="u-clearfix u-image u-shading u-section-1" id="sec-71b2" data-image-width="150" data-image-height="99">
+    <section class="u-clearfix u-image u-shading u-section-1" id="sec-227a" data-image-width="150" data-image-height="99">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-heading-font u-text u-text-body-alt-color u-text-default u-title u-text-1">Nombre restaurante</h1>
+        <h1 class="u-heading-font u-text u-text-body-alt-color u-text-default u-title u-text-1">${inspeccion.getRotulo()}</h1>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-1">
                 <div class="u-container-layout u-valign-middle u-container-layout-1">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-2">Dirección</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-2">Dirección</h5> 
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-2">
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <h5 class="u-text u-text-body-alt-color u-text-3">"Dirección del restaurante"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-3">${inspeccion.getDireccion()}</h5>
                 </div>
               </div>
             </div>
@@ -111,7 +144,7 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-4">
                 <div class="u-container-layout u-valign-middle u-container-layout-4">
-                  <h5 class="u-text u-text-body-alt-color u-text-5">"Tipo de actividad"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-5">${inspeccion.getActividad()}</h5>
                 </div>
               </div>
             </div>
@@ -121,13 +154,13 @@
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-5">
-                <div class="u-container-layout u-valign-middle u-container-layout-5">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-6">Tipo de actuación</h5>
+                <div class="u-container-layout u-valign-bottom u-container-layout-5">
+                  <h5 class="u-align-center u-text u-text-body-alt-color u-text-default u-text-6">Fecha última inspección</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-6">
                 <div class="u-container-layout u-valign-middle u-container-layout-6">
-                  <h5 class="u-text u-text-body-alt-color u-text-7">"Programada"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-7">${inspeccion.getFecha()}</h5>
                 </div>
               </div>
             </div>
@@ -138,12 +171,12 @@
             <div class="u-layout-row">
               <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-7">
                 <div class="u-container-layout u-valign-middle u-container-layout-7">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-8">Perfil de actividad</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-8">Tipo de actuación</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-8">
                 <div class="u-container-layout u-valign-middle u-container-layout-8">
-                  <h5 class="u-text u-text-body-alt-color u-text-9">"Prioridad"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-9">${inspeccion.getTipo_actuacion()}</h5>
                 </div>
               </div>
             </div>
@@ -152,14 +185,14 @@
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-5">
           <div class="u-layout">
             <div class="u-layout-row">
-              <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-9">
+              <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-9">
                 <div class="u-container-layout u-valign-middle u-container-layout-9">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-10">Estado higiénico sanitario</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-10">Perfil de actividad</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-10">
                 <div class="u-container-layout u-valign-middle u-container-layout-10">
-                  <h5 class="u-text u-text-body-alt-color u-text-11">"Estado"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-11">${inspeccion.getPerfil_actividad()}</h5>
                 </div>
               </div>
             </div>
@@ -170,12 +203,28 @@
             <div class="u-layout-row">
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-11">
                 <div class="u-container-layout u-valign-middle u-container-layout-11">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-12">Frecuencia de la inspección</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-12">Estado higiénico sanitario</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-12">
                 <div class="u-container-layout u-valign-middle u-container-layout-12">
-                  <h5 class="u-text u-text-body-alt-color u-text-13">"Frecuencia"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-13">${inspeccion.getEstado_sanitario()}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-7">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-13">
+                <div class="u-container-layout u-valign-middle u-container-layout-13">
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-14">Frecuencia de la inspección</h5>
+                </div>
+              </div>
+              <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-14">
+                <div class="u-container-layout u-valign-middle u-container-layout-14">
+                  <h5 class="u-text u-text-body-alt-color u-text-15">${inspeccion.getF_inspeccion()}</h5>
                 </div>
               </div>
             </div>
@@ -183,6 +232,15 @@
         </div>
       </div>
     </section>
+     <%
+        String inspeccion1= request.getSession().getAttribute("Inspeccion1").toString();
+        String inspeccion2= request.getSession().getAttribute("Inspeccion2").toString();
+        String inspeccion3= request.getSession().getAttribute("Inspeccion3").toString();
+        String inspeccion4= request.getSession().getAttribute("Inspeccion4").toString();
+        %>
+               </div>
+                <% if (!inspeccion1.equals("0")){
+     %> 
     <section class="u-clearfix u-image u-section-2" id="sec-5771" data-image-width="1280" data-image-height="848">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-heading-font u-text u-text-default u-text-palette-4-base u-title u-text-1" data-animation-name="bounceIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Historial de inspecciones</h1>
@@ -196,12 +254,15 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-2">
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <h5 class="u-text u-text-body-alt-color u-text-3" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-3" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion1 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <%} %>
+                <% if (!inspeccion2.equals("0")){
+     %>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-2">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -212,12 +273,14 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-4">
                 <div class="u-container-layout u-valign-middle u-container-layout-4">
-                  <h5 class="u-text u-text-body-alt-color u-text-5" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-5" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion2 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <%} %>
+                <% if (!inspeccion3.equals("0")){%>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-3">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -228,12 +291,14 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-6">
                 <div class="u-container-layout u-valign-middle u-container-layout-6">
-                  <h5 class="u-text u-text-body-alt-color u-text-7" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-7" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion3 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <%} %>
+        <% if (!inspeccion4.equals("0")){%>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-4">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -244,15 +309,18 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-8">
                 <div class="u-container-layout u-valign-middle u-container-layout-8">
-                  <h5 class="u-text u-text-body-alt-color u-text-9" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-9" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion4 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <a href="#" class="u-border-2 u-border-grey-75 u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1" data-animation-name="swing" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Eliminar Local
+        <%} %>
+        <form action="FormEliminarLocal">
+          <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Eliminar Local</button>
           <br>
-        </a>
+          </form>
+        
       </div>
     </section>
     

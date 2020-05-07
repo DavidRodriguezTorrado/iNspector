@@ -2,10 +2,10 @@ package es.upm.dit.isst.inspector.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,9 +35,9 @@ public class Admin implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "inspector")
-	private Collection<Inspector> inspectoresPorAutorizar;
+	private List<Inspector> inspectoresPorAutorizar;
 	
-	public Collection<Inspector> getInspectoresPorAutorizar() {
+	public List<Inspector> getInspectoresPorAutorizar() {
 		return inspectoresPorAutorizar;
 	}
 
@@ -54,7 +54,7 @@ public class Admin implements Serializable {
 		this.password = password;
 	}
 
-	public void setInspectoresPorAutorizar(Collection<Inspector> inspectoresPorAutorizar) {
+	public void setInspectoresPorAutorizar(List<Inspector> inspectoresPorAutorizar) {
 		this.inspectoresPorAutorizar = inspectoresPorAutorizar;
 	}
 
@@ -89,6 +89,5 @@ public class Admin implements Serializable {
 			return false;
 		return true;
 	}
-
 
 }

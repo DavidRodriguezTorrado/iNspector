@@ -44,7 +44,14 @@
 		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
-		 <% if(reg=="inspector"){ %>
+		 <% if(reg=="admin"){ %>
+            <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
+</li></ul>
+	
+		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Administrador.jsp" style="padding: 10px;">Perfil</a>
+		</li></ul>
+		<% } %>
+				 <% if(reg=="inspector" || reg=="inspector_noautorizado"){ %>
             <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
 </li></ul>
 	
@@ -78,10 +85,15 @@
         </div>
       </div></header>
       <section class="u-clearfix u-image u-shading u-section-1" src="" id="sec-87d6">
+      <form action=FormLogoutServlet>
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <div class="u-container-style u-group u-opacity u-opacity-70 u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1">Error</h3>
+            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1">
+            
+            
+            
+            ¿Te vas?</h3>
             <p class="u-align-center u-text u-text-default u-text-grey-75 u-text-2"> ¿Estás seguro de que quieres salir?</p>
 
              
@@ -98,6 +110,7 @@
           </div>
         </div>
       </div>
+      </form>
        </section>
 
     <footer class="u-align-left u-clearfix u-footer u-grey-80 u-footer" id="sec-24d6"><div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">

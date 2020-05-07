@@ -28,7 +28,7 @@ public class Incidencia implements Serializable {
 
 	@ManyToOne
 	private Inspector inspector;
-	private boolean inspected;
+	private String inspected;
 	private String comentarios;
 	private String resultado;
 
@@ -63,7 +63,7 @@ public class Incidencia implements Serializable {
 		return inspector;
 	}
 
-	public boolean isInspected() {
+	public String getInspected() {
 		return inspected;
 	}
 
@@ -85,6 +85,7 @@ public class Incidencia implements Serializable {
 
 	public void setLocal(Local local) {
 		this.local = local;
+		
 	}
 
 	public void setCustomer(Customer customer) {
@@ -95,7 +96,7 @@ public class Incidencia implements Serializable {
 		this.inspector = inspector;
 	}
 
-	public void setInspected(boolean inspected) {
+	public void setInspected(String inspected) {
 		this.inspected = inspected;
 	}
 

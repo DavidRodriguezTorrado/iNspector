@@ -41,10 +41,7 @@
           </div>
            <% HttpSession s= request.getSession();
            String reg =(String)s.getAttribute("Registrado");
-           if(reg != "si" && reg!="inspector"){
-           s.setAttribute("Registrado", "no");
-           }
-           
+
            %>
            <div class="u-custom-menu u-nav-container">
            	<% if(reg=="no"){ %>
@@ -99,29 +96,9 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-heading-font u-text u-text-default u-text-palette-4-base u-title u-text-1" data-animation-name="slideIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="Down">Añadir nueva incidencia</h1>
         <div class="u-form u-form-1">
-          <form action="ManageIncidencia" method="POST">
+          <form action="FormCreaIncidencia">
             <input type="hidden" id="siteId" name="siteId" value="57419877">
             <input type="hidden" id="pageId" name="pageId" value="467406325">
-            <div class="u-form-group u-form-name">
-              <label for="date" class="u-form-control-hidden u-label">Fecha</label>
-              <input type="text" placeholder="Introduzca la fecha" id="date" name="date" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-email u-form-group">
-              <label for="local" class="u-form-control-hidden u-label">Local</label>
-              <input type="text" placeholder="Introduzca un local" id="local" name="local" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-group u-form-name u-form-group-3">
-              <label for="tipo" class="u-form-control-hidden u-label">Tipo</label>
-              <input type="text" placeholder="Introduzca un tipo" id="tipo" name="tipo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-address u-form-group u-form-group-4">
-              <label for="customer" class="u-form-control-hidden u-label">Nombre del cliente</label>
-              <input type="text" placeholder="Introduzca el nombre del cliente" id="customer" name="customer" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-           <div class="u-form-address u-form-group u-form-group-4">
-              <label for="inspector" class="u-form-control-hidden u-label">Nombre del inspector</label>
-              <input type="text" placeholder="Introduzca el nombre del inspector" id="inspector" name="inspector" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
             <div class="u-form-group u-form-message">
               <label for="comentarios" class="u-form-control-hidden u-label">Comentarios</label>
               <textarea placeholder="Comentarios..." rows="4" cols="50" id="comentarios" name="comentarios" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>

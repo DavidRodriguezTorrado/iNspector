@@ -41,6 +41,7 @@
           </div>
           <% HttpSession s= request.getSession();
           String reg =(String)s.getAttribute("Registrado");
+          String yaEsFavorito=(String)s.getAttribute("yaEsFavorito");
            %>           <div class="u-custom-menu u-nav-container">
            	<% if(reg=="no"){ %>
 		  <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Login.jsp" style="padding: 10px;">Login</a>
@@ -216,16 +217,48 @@
          <% } %>
       
         <% if(reg=="si"){ %> 
- 		 
-	 <a href="Incidencia.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style u-palette-4-dark-2 u-btn-1">Reportar Incidencia</a>
         
-        <a href="#" class="u-border-2 u-border-grey-75 u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-2">Añadir a favorito</a>
-      
-      <% } %>
+ 		 <div>
+ 		 <div class="u-align-center u-form-group u-form-submit">
+	 <a href="FormularioCrearIncidencia.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style u-palette-4-dark-2 u-btn-1">Reportar Incidencia</a>
+</div>
+
+				<%
+					if (yaEsFavorito == "no") {
+				%>
+				<form action="FormNuevoFavorito">
+					<div class="u-align-center u-form-group u-form-submit">
+						<button type="submit"
+							class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Añadir
+							a favoritos</button>
+
+					</div>
+				</form>
+				<%
+					}
+				%>
+				<%
+					if (yaEsFavorito == "si") {
+				%>
+				<form action="FormEliminaFavorito">
+					<div class="u-align-center u-form-group u-form-submit">
+						<button type="submit"
+							class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Eliminar
+							de favoritos</button>
+
+					</div>
+				</form>
+				<%
+					}
+				%>
+			</div>
+		
         
       </div>
     </section>
-    
+    	<%
+				}
+			%>
     
     <footer class="u-align-left u-clearfix u-footer u-grey-80 u-footer" id="sec-24d6"><div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">
         <span class="u-icon u-icon-circle u-text-black u-icon-1">

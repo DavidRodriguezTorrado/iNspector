@@ -2,6 +2,7 @@ package es.upm.dit.isst.inspector.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,7 +14,11 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
+import es.upm.dit.isst.inspector.model.Customer;
+import es.upm.dit.isst.inspector.model.Incidencia;
 import es.upm.dit.isst.inspector.model.Inspeccion;
+import es.upm.dit.isst.inspector.model.Inspector;
+import es.upm.dit.isst.inspector.model.Local;
 
 public class InspeccionDAOImplementation implements InspeccionDAO {
 
@@ -33,7 +38,26 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 	public void create(Inspeccion inspeccion) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.save(inspeccion);
+		String rotulo = inspeccion.getRotulo();
+		String direccion = inspeccion.getDireccion();
+		String actividad = inspeccion.getActividad();
+		String fecha = inspeccion.getFecha();
+		String tipoactuacion = inspeccion.getTipo_actuacion();
+		String inspector = inspeccion.getInspector().getEmail();
+		String perfilactividad ="";
+		String estado = "";
+		String frecuencia = "";
+		
+
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			PreparedStatement ps = con.prepareStatement("INSERT INTO INSPECCIONES " +
+			 		"(rotulo, direccion, actividad, fecha, tipo_actuacion, perfil_actividad, estado_sanitario, f_inspeccion ,inspector) " +
+			 		"VALUES ('" + rotulo + "', '" + direccion + "', '" + actividad + "', '" + fecha + "', '" + tipoactuacion + "', '" + perfilactividad + "', '" + estado+ "', '" + frecuencia+ "', '" + inspector+ "')");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
 
@@ -44,10 +68,32 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 	public Inspeccion read(int id) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Inspeccion p = session.get(Inspeccion.class, id);
-		session.getTransaction().commit();
+		Inspeccion  insp = new Inspeccion();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			Statement s = con.createStatement();
+			 ResultSet res = s.executeQuery("SELECT * FROM INSPECCIONES WHERE inspecciones_id= '" +id+"'");
+			if(res.next()) {
+				
+				insp.setId(id);
+				insp.setRotulo(res.getString(2));
+				insp.setDireccion(res.getString(3));
+				insp.setActividad(res.getString(4));
+				insp.setFecha(res.getString(5));
+				insp.setTipo_actuacion(res.getString(6));
+				insp.setPerfil_actividad(res.getString(7));
+				insp.setEstado_sanitario(res.getString(8));
+				insp.setF_inspeccion(res.getString(9));
+				Inspector inspector = new Inspector();
+				inspector.setEmail(res.getString(10));
+				insp.setInspector(inspector);
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		session.getTransaction().commit();
 		session.close();
-		return p;
+		return insp;
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -87,7 +133,7 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
 			Statement s = con.createStatement();
-			String query = "SELECT DISTINCT rótulo FROM inspecciones_isst WHERE rótulo like '%" + rotulo + "%' ORDER BY rótulo";
+			String query = "SELECT DISTINCT rotulo FROM inspecciones WHERE rotulo like '%" + rotulo + "%' ORDER BY rotulo";
 
 			ResultSet res = s.executeQuery(query);
 
@@ -105,6 +151,8 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 	}
 
 	public Inspeccion ultimaInspeccion(Inspeccion inspeccion) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
 		String rotulo = inspeccion.getRotulo();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -114,7 +162,7 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 			String pw = "tortuga";	
 			con = DriverManager.getConnection(url, user, pw);
 			Statement s = con.createStatement();
-			String query = "SELECT * FROM inspecciones_isst WHERE rótulo = '" + rotulo + "' ORDER BY Fecha_de_la_inspección";
+			String query = "SELECT * FROM inspecciones WHERE rotulo = '" + rotulo + "' AND F_inspeccion!='' ORDER BY F_inspeccion";
 
 			ResultSet res = s.executeQuery(query);
 			if(res.next()) {
@@ -136,6 +184,78 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 		catch (SQLException e) {
 			e.printStackTrace();	
 		}
+		session.getTransaction().commit();
+		session.close();
 		return inspeccion;
 	}
+	
+	public ArrayList<Integer> inspecciones(String rotulo){
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		ArrayList<Integer> inspecciones = new ArrayList<Integer>();
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con;
+			String url = "jdbc:mysql://localhost:3306/test1?serverTimezone=UTC";
+			String user = "dbadmin";
+			String pw = "tortuga";	
+			con = DriverManager.getConnection(url, user, pw);
+			Statement s = con.createStatement();
+			String query = "SELECT * FROM inspecciones WHERE rotulo = '" + rotulo + "' AND F_inspeccion!='' ORDER BY F_inspeccion";
+
+			ResultSet res = s.executeQuery(query);
+			while(res.next()) {
+				inspecciones.add((res.getInt(1)));
+			}
+			con.close();
+
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();	
+		}
+		session.getTransaction().commit();
+		session.close();
+		return inspecciones;
+	}
+	public ArrayList<Integer> misInspeccionesPorHacer(String email){
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		ArrayList<Integer> misInspecciones = new ArrayList<Integer>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			Statement s = con.createStatement();
+			ResultSet res = s.executeQuery("SELECT DISTINCT inspecciones_id FROM INSPECCIONES WHERE inspector like '%" +email+"%' and F_inspeccion=''");
+			while(res.next()) {
+				misInspecciones.add((res.getInt(1)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.getTransaction().commit();
+		session.close();
+		return misInspecciones;
+	}
+
+	public ArrayList<Integer> misInspeccionesHechas(String email){
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		ArrayList<Integer> misInspecciones = new ArrayList<Integer>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			Statement s = con.createStatement();
+			ResultSet res = s.executeQuery("SELECT DISTINCT ID FROM INSPECCIONES WHERE inspector like '%" +email+"%' and F_inspeccion!=''" );
+			while(res.next()) {
+				misInspecciones.add((res.getInt(1)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.getTransaction().commit();
+		session.close();
+		return misInspecciones;
+	}
+	
 }

@@ -44,7 +44,7 @@
 		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
-		 <% if(reg=="inspector"){ %>
+		 <% if(reg=="inspector" || reg=="inspector_noautorizado"){ %>
             <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
 </li></ul>
 	
@@ -81,7 +81,9 @@
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <div class="u-container-style u-group u-opacity u-opacity-70 u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1">Error</h3>
+            <h3 class="u-align-center u-text u-text-palette-4-base u-text-1">
+            
+            Cambios guardados</h3>
             <%if (reg=="si"){ %>
             <p class="u-align-center u-text u-text-default u-text-grey-75 u-text-2"> ${customer.getName()} sus datos han sido actualizados correctamente</p>
             <%} %>
@@ -92,7 +94,7 @@
                  <%if (reg=="si"){ %>
                   <a href="Conf-Usuario.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
                   <%} %>
-                     <%if (reg=="inspector"){ %>
+                     <%if (reg=="inspector" || reg=="inspector_noautorizado" ){ %>
                   <a href="Conf-Inspector.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
                   <%} %>
                   <input type="submit" value="submit" class="u-form-control-hidden">

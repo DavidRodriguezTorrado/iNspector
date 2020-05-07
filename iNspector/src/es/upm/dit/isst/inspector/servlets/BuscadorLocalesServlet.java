@@ -36,7 +36,6 @@ public class BuscadorLocalesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String rotulo = req.getParameter("rotulo");		
 		List<String> rotulos = InspeccionDAOImplementation.getInstance().buscador(rotulo);
-		
 		req.getSession().setAttribute("rotulos", rotulos );
 		getServletContext().getRequestDispatcher("/BuscadorDeLocales.jsp").forward(req,resp);
 		

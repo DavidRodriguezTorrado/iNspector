@@ -1,5 +1,6 @@
 package es.upm.dit.isst.inspector.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,5 +15,9 @@ public interface InspeccionDAO {
 	public Collection<Inspeccion> readAll();
 	public List<String> buscador(String rotulo);
 	public Inspeccion ultimaInspeccion(Inspeccion inspeccion);
+	public ArrayList<Integer> inspecciones(String rotulo);
+	public ArrayList<Integer> misInspeccionesHechas(String email);
+	public ArrayList<Integer> misInspeccionesPorHacer(String email);
+
 
 }

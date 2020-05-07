@@ -42,9 +42,17 @@ public class FormCreaInspector extends HttpServlet {
 		
 		InspectorDAOImplementation.getInstance().create(inspector);
 		req.getSession().setAttribute("inspector", InspectorDAOImplementation.getInstance().read(inspector.getEmail()));
-		req.getSession().setAttribute("Registrado", "inspector_noautorizado");
-		getServletContext().getRequestDispatcher("/Conf-Inspector.jsp").forward(req,resp);	
-	}
+		req.getSession().setAttribute("Name", inspector.getName());
+		req.getSession().setAttribute("Email", inspector.getEmail());
+		req.getSession().setAttribute("Password", inspector.getPassword());
+		req.getSession().setAttribute("Autorizado", inspector.getAutorizado());
+		String autorizado1 = (String)req.getSession().getAttribute("Autorizado");
+		req.getSession().setAttribute("Registrado", "inspector");	
+			if(autorizado1 == "no") {
+				req.getSession().setAttribute("Registrado", "inspector_noautorizado");
+		}
+		getServletContext().getRequestDispatcher("/Conf-Inspector.jsp").forward(req,resp);
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

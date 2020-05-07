@@ -115,10 +115,10 @@
                     <a href="#">términos del servicio</a>
                   </label>
                 </div>
-                <div class="u-align-center u-form-group u-form-submit">
-                  <a href="#" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Registrarme</a>
-                  <input type="submit" value="submit" class="u-form-control-hidden">
-                </div>
+							<div class="u-align-center u-form-group u-form-submit">
+								<button type="submit"
+									class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Registrarse</button>
+							</div>
                
                 <input type="hidden" value="" name="recaptchaResponse">
               </form>

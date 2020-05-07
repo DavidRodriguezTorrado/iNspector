@@ -34,17 +34,33 @@
   </head>
   <body class="u-body"><header class="u-clearfix u-header u-palette-4-base u-sticky u-header" id="sec-2a1f"><div class="u-clearfix u-sheet u-sheet-1">
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-          <div class="menu-collapse" style="font-size: 1.25rem; letter-spacing: 0; font-weight: 700;">
-            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="#" style="padding: 4px 22px; font-size: calc(1em + 8px);">
-              <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+				<div class="menu-collapse"
+					style="font-size: 1.25rem; letter-spacing: 0; font-weight: 700;">
+					<a
+						class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base"
+						href="#" style="padding: 4px 22px; font-size: calc(1em + 8px);">
+						<svg>
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+								xlink:href="#menu-hamburger"></use></svg> <svg version="1.1"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink">
+							<defs>
+							<symbol id="menu-hamburger" viewBox="0 0 16 16"
+								style="width: 16px; height: 16px;">
+							<rect y="1" width="16" height="2"></rect>
+							<rect y="7" width="16" height="2"></rect>
+							<rect y="13" width="16" height="2"></rect>
 </symbol>
 </defs></svg>
-            </a>
-          </div>
-                    <% HttpSession s= request.getSession();
-           String reg =(String)s.getAttribute("Registrado");%>
-                                <div class="u-custom-menu u-nav-container">
+					</a>
+				</div>
+				<%
+					HttpSession s = request.getSession();
+					String reg = (String) s.getAttribute("Registrado");
+					
+					String autorizado = (String) request.getSession().getAttribute("Autorizado");
+				%>
+				<div class="u-custom-menu u-nav-container">
            	<% if(reg=="no"){ %>
 		  <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Login.jsp" style="padding: 10px;">Login</a>
 </li></ul>
@@ -59,7 +75,7 @@
 		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
-		 <% if(reg=="inspector"){ %>
+		 <% if(reg=="inspector" || reg=="inspector_noautorizado"){ %>
             <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
 </li></ul>
 	
@@ -92,20 +108,20 @@
           </form>
         </div>
       </div></header>
-    <section class="u-clearfix u-image u-shading u-section-1" id="sec-c0e8" data-image-width="150" data-image-height="99">
+    <section class="u-clearfix u-image u-shading u-section-1" id="sec-227a" data-image-width="150" data-image-height="99">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-heading-font u-text u-text-body-alt-color u-text-default u-title u-text-1">Nombre restaurante</h1>
+        <h1 class="u-heading-font u-text u-text-body-alt-color u-text-default u-title u-text-1">${inspeccion.getRotulo()}</h1>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-1">
                 <div class="u-container-layout u-valign-middle u-container-layout-1">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-2">Dirección</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-2">Dirección</h5> 
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-2">
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <h5 class="u-text u-text-body-alt-color u-text-3">"Dirección del restaurante"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-3">${inspeccion.getDireccion()}</h5>
                 </div>
               </div>
             </div>
@@ -121,7 +137,7 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-4">
                 <div class="u-container-layout u-valign-middle u-container-layout-4">
-                  <h5 class="u-text u-text-body-alt-color u-text-5">"Tipo de actividad"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-5">${inspeccion.getActividad()}</h5>
                 </div>
               </div>
             </div>
@@ -131,13 +147,13 @@
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-5">
-                <div class="u-container-layout u-valign-middle u-container-layout-5">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-6">Tipo de actuación</h5>
+                <div class="u-container-layout u-valign-bottom u-container-layout-5">
+                  <h5 class="u-align-center u-text u-text-body-alt-color u-text-default u-text-6">Fecha última inspección</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-6">
                 <div class="u-container-layout u-valign-middle u-container-layout-6">
-                  <h5 class="u-text u-text-body-alt-color u-text-7">"Programada"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-7">${inspeccion.getFecha()}</h5>
                 </div>
               </div>
             </div>
@@ -148,12 +164,12 @@
             <div class="u-layout-row">
               <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-7">
                 <div class="u-container-layout u-valign-middle u-container-layout-7">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-8">Perfil de actividad</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-8">Tipo de actuación</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-8">
                 <div class="u-container-layout u-valign-middle u-container-layout-8">
-                  <h5 class="u-text u-text-body-alt-color u-text-9">"Prioridad"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-9">${inspeccion.getTipo_actuacion()}</h5>
                 </div>
               </div>
             </div>
@@ -162,14 +178,14 @@
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-5">
           <div class="u-layout">
             <div class="u-layout-row">
-              <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-9">
+              <div class="u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-9">
                 <div class="u-container-layout u-valign-middle u-container-layout-9">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-10">Estado higiénico sanitario</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-10">Perfil de actividad</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-10">
                 <div class="u-container-layout u-valign-middle u-container-layout-10">
-                  <h5 class="u-text u-text-body-alt-color u-text-11">"Estado"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-11">${inspeccion.getPerfil_actividad()}</h5>
                 </div>
               </div>
             </div>
@@ -180,21 +196,40 @@
             <div class="u-layout-row">
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-11">
                 <div class="u-container-layout u-valign-middle u-container-layout-11">
-                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-12">Frecuencia de la inspección</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-12">Estado higiénico sanitario</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-12">
                 <div class="u-container-layout u-valign-middle u-container-layout-12">
-                  <h5 class="u-text u-text-body-alt-color u-text-13">"Frecuencia"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-13">${inspeccion.getEstado_sanitario()}</h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <a href="#" class="u-border-2 u-border-grey-75 u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1">Programar Inspección
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-7">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-left-cell u-opacity u-opacity-50 u-size-16 u-layout-cell-13">
+                <div class="u-container-layout u-valign-middle u-container-layout-13">
+                  <h5 class="u-text u-text-body-alt-color u-text-default u-text-14">Frecuencia de la inspección</h5>
+                </div>
+              </div>
+              <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-14">
+                <div class="u-container-layout u-valign-middle u-container-layout-14">
+                  <h5 class="u-text u-text-body-alt-color u-text-15">${inspeccion.getF_inspeccion()}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+        <%if(autorizado.equals("yes")){ %>   
+        <a href="FormularioCrearInspeccion.jsp" class="u-border-2 u-border-grey-75 u-border-radius-10 u-btn u-btn-round u-button-style u-palette-4-base u-btn-1">Programar Inspección
           <br>
         </a>
-      </div>
     </section>
     <section class="u-clearfix u-image u-section-2" id="sec-4c1e" data-image-width="1280" data-image-height="848">
       <div class="u-clearfix u-sheet u-sheet-1">
@@ -265,6 +300,7 @@
         </div>
       </div>
     </section>
+    
     <section class="u-align-left u-clearfix u-section-3" id="sec-5676">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Incidencias pendientes de este local</h1>
@@ -332,7 +368,7 @@
       </div>
     </section>
     
-    
+    <%} %>
     <footer class="u-align-left u-clearfix u-footer u-grey-80 u-footer" id="sec-24d6"><div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">
         <span class="u-icon u-icon-circle u-text-black u-icon-1">
           </span>

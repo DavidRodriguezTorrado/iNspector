@@ -44,6 +44,9 @@ public class FormCreaCustomer extends HttpServlet {
 		
 		CustomerDAOImplementation.getInstance().create(customer);
 		req.getSession().setAttribute("customer", CustomerDAOImplementation.getInstance().read(customer.getEmail()));
+		req.getSession().setAttribute("Name", customer.getName());
+		req.getSession().setAttribute("Email", customer.getEmail());
+		req.getSession().setAttribute("Password", customer.getPassword());
 		req.getSession().setAttribute("Registrado", "si");
 		getServletContext().getRequestDispatcher("/Conf-Usuario.jsp").forward(req,resp);
 	

@@ -2,11 +2,11 @@ package es.upm.dit.isst.inspector.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -27,27 +27,13 @@ public class Customer implements Serializable {
 	private String password;
 	
 	@OneToMany(mappedBy = "customer")
-	private Collection<Incidencia> incidencias;
+	private List<Incidencia> incidencias;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-        })
-        @JoinTable(name = "locales",
-            joinColumns = @JoinColumn(name = "favoritos"),
-            inverseJoinColumns = @JoinColumn(name = "name")
-        )
-	private Collection<Local> favoritos;
+    @OneToMany(mappedBy = "customer")
+	private List<Favorito> favoritos;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-        })
-        @JoinTable(name = "locales",
-            joinColumns = @JoinColumn(name = "favoritos"),
-            inverseJoinColumns = @JoinColumn(name = "name")
-        )
-	private Collection<Local> ultimos;
+    @OneToMany(mappedBy= "customer")
+	private List<Ultimo> ultimos;
 
 	public Customer() {
 
@@ -94,15 +80,15 @@ public class Customer implements Serializable {
 		return password;
 	}
 
-	public Collection<Incidencia> getIncidencias() {
+	public List<Incidencia> getIncidencias() {
 		return incidencias;
 	}
 
-	public Collection<Local> getFavoritos() {
+	public List<Favorito> getFavoritos() {
 		return favoritos;
 	}
 
-	public Collection<Local> getUltimos() {
+	public List<Ultimo> getUltimos() {
 		return ultimos;
 	}
 
@@ -118,15 +104,15 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 
-	public void setIncidencias(Collection<Incidencia> incidencias) {
+	public void setIncidencias(List<Incidencia> incidencias) {
 		this.incidencias = incidencias;
 	}
 
-	public void setFavoritos(Collection<Local> favoritos) {
+	public void setFavoritos(List<Favorito> favoritos) {
 		this.favoritos = favoritos;
 	}
 
-	public void setUltimos(Collection<Local> ultimos) {
+	public void setUltimos(List<Ultimo> ultimos) {
 		this.ultimos = ultimos;
 	}
 

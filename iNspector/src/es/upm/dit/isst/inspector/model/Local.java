@@ -21,86 +21,106 @@ public class Local implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="name")
-	private String name;
+	@Column(name="id")
+	private int id;
+	private String rotulo;
 	private String direccion;
-	private String actividad;
+	private String epigrafe;
 
-	@ManyToOne
-	private Customer customer;
-	
-    @ManyToMany(mappedBy = "favoritos")
-    private Collection<Customer> customersfavoritos;
-    
-    @ManyToMany(mappedBy = "ultimos")
-    private Collection<Customer> customersultimos;
 	
 	@OneToMany(mappedBy = "local")
-	private Collection<Inspeccion> inspecciones;
+    private List<Favorito> customersfavoritos;
+    
+    @OneToMany(mappedBy = "local")
+    private List<Ultimo> customersultimos;
+	
+	@OneToMany(mappedBy = "local")
+	private List<Inspeccion> inspecciones;
+	
 	@OneToMany(mappedBy = "local")
 	private Collection<Incidencia> incidencias;
 
 	public Local() {
 
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	
+	public int getId() {
+		return id;
 	}
 
-	public String getName() {
-		return name;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getRotulo() {
+		return rotulo;
+	}
+
+	public void setRotulo(String rotulo) {
+		this.rotulo = rotulo;
 	}
 
 	public String getDireccion() {
 		return direccion;
 	}
 
-	public String getActividad() {
-		return actividad;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getEpigrafe() {
+		return epigrafe;
+	}
+
+	public void setEpigrafe(String epigrafe) {
+		this.epigrafe = epigrafe;
+	}
+
+	public List<Favorito> getCustomersfavoritos() {
+		return customersfavoritos;
+	}
+
+	public void setCustomersfavoritos(List<Favorito> customersfavoritos) {
+		this.customersfavoritos = customersfavoritos;
+	}
+
+	public List<Ultimo> getCustomersultimos() {
+		return customersultimos;
+	}
+
+	public void setCustomersultimos(List<Ultimo> customersultimos) {
+		this.customersultimos = customersultimos;
 	}
 
 	public Collection<Inspeccion> getInspecciones() {
 		return inspecciones;
 	}
 
+	public void setInspecciones(List<Inspeccion> inspecciones) {
+		this.inspecciones = inspecciones;
+	}
+
 	public Collection<Incidencia> getIncidencias() {
 		return incidencias;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public void setActividad(String actividad) {
-		this.actividad = actividad;
-	}
-
-	public void setInspecciones(Collection<Inspeccion> inspecciones) {
-		this.inspecciones = inspecciones;
 	}
 
 	public void setIncidencias(Collection<Incidencia> incidencias) {
 		this.incidencias = incidencias;
 	}
 
-	@Override
-	public String toString() {
-		return "Local [name=" + name + ", direccion=" + direccion + ", actividad=" + actividad + ", inspecciones="
-				+ inspecciones + ", incidencias=" + incidencias + "]";
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((rotulo == null) ? 0 : rotulo.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -111,17 +131,24 @@ public class Local implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Local other = (Local) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
+		int p=0;
+		if (id != other.id)
+			p++;
+		if (rotulo == null) {
+			if (other.rotulo != null)
+				p++;
+		} else if (!rotulo.equals(other.rotulo))
 			return false;
+		if(p==2)
+		return false;
 		return true;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Local [id=" + id + ", rotulo=" + rotulo + ", direccion=" + direccion + ", epigrafe=" + epigrafe
+				+ ", customersfavoritos=" + customersfavoritos + ", customersultimos="
+				+ customersultimos + ", inspecciones=" + inspecciones + ", incidencias=" + incidencias + "]";
+	}
 
 }
-
-
-	

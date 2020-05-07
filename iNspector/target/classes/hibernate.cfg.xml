@@ -16,5 +16,7 @@
 		<mapping class="es.upm.dit.isst.inspector.model.Incidencia" />
 		<mapping class="es.upm.dit.isst.inspector.model.Local" />
 		<mapping class="es.upm.dit.isst.inspector.model.Admin" />
+		<mapping class="es.upm.dit.isst.inspector.model.Favorito" />
+		<mapping class="es.upm.dit.isst.inspector.model.Ultimo" />
 	</session-factory>
 </hibernate-configuration>

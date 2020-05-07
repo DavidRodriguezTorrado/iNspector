@@ -41,7 +41,7 @@
           </div>
            <% HttpSession s= request.getSession();
            String reg =(String)s.getAttribute("Registrado");
-           if(reg != "si" && reg!="inspector" && reg!="admin"){
+           if(reg != "si" && reg!="inspector" && reg!="inspector_noautorizado" && reg!="admin"){
            s.setAttribute("Registrado", "no");
            reg = "no";
            }
@@ -62,7 +62,7 @@
 		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Usuario.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
-		 <% if(reg=="inspector"){ %>
+		 <% if(reg=="inspector" || reg=="inspector_noautorizado"){ %>
             <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
 </li></ul>
 	
@@ -73,7 +73,7 @@
             <ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Logout.jsp" style="padding: 10px;">Logout</a>
 </li></ul>
 	
-		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf--Administrador.jsp" style="padding: 10px;">Perfil</a>
+		<ul class="u-nav u-spacing-0 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-palette-1-base" href="Conf-Administrador.jsp" style="padding: 10px;">Perfil</a>
 		</li></ul>
 		<% } %>
           </div>
@@ -96,6 +96,14 @@
               <label for="rotulo" class="u-form-control-hidden u-label">Restaurante</label>
               <input type="text" placeholder="Busca un restaurante..." id="rotulo" name="rotulo" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-gradient u-input u-input-round u-input-1" required="">
             </div>
+            	<div class="embed-responsive"  class="u-form-control-hidden">
+<input name="mapa"
+				<iframe
+					src="https://www.google.com/maps/d/u/0/embed?mid=1PeaxOLPzoeunB4J8u_OzO2eCMnPPoMa2"
+					width="640" height="480" name="iframeID" id="iframeID"> </iframe>
+
+>
+			</div>
             <div class="u-form-group u-form-submit">
               <a href="#" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style u-palette-4-dark-2 u-btn-1">Buscar</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
@@ -122,10 +130,15 @@
         </form>
       </div>
       <div class="u-grey-light-2 u-map u-map-1">
-        <div class="embed-responsive">
-        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PeaxOLPzoeunB4J8u_OzO2eCMnPPoMa2" width="640" height="480"></iframe>
-        </div>
-      </div>
+			<div class="embed-responsive"  class="u-form-control-hidden">
+
+				<iframe
+					src="https://www.google.com/maps/d/u/0/embed?mid=1PeaxOLPzoeunB4J8u_OzO2eCMnPPoMa2"
+					width="640" height="480" name="iframeID" id="iframeID"> </iframe>
+
+
+			</div>
+		</div>
     </section>
     
     
