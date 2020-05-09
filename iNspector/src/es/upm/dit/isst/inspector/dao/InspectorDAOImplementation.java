@@ -163,7 +163,7 @@ public class InspectorDAOImplementation implements InspectorDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
 			Statement s = con.createStatement();
-			ResultSet res = s.executeQuery("SELECT * FROM inspectores ORDER BY RAND() LIMIT 1;");
+			ResultSet res = s.executeQuery("SELECT * FROM inspectores WHERE autorizado ='yes' ORDER BY RAND() LIMIT 1;");
 			if(res.next()) {
 			insp.setEmail(res.getString(1));
 			insp.setName(res.getString(2));

@@ -100,16 +100,44 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 	public void update(Inspeccion inspeccion) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(inspeccion);
+		int id = inspeccion.getId();
+		String rotulo = inspeccion.getRotulo();
+		String direccion = inspeccion.getDireccion();
+		String actividad = inspeccion.getActividad();
+		String fecha = inspeccion.getFecha();
+		String tipo = inspeccion.getTipo_actuacion();
+		String perfil = inspeccion.getPerfil_actividad();
+		String estado = inspeccion.getEstado_sanitario();
+		String frecuencia = inspeccion.getF_inspeccion();
+		Inspector inspector = inspeccion.getInspector();
+		
+
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			PreparedStatement ps = con.prepareStatement("UPDATE inspecciones SET Rotulo='"+rotulo+"', Direccion='"+direccion+"', "
+					+ "Actividad='"+actividad+"', Fecha='"+fecha+"'"
+					+ ", Tipo_actuacion='"+tipo+"', Perfil_actividad='"+perfil+"', Estado_sanitario='"+estado+""
+					+ "', F_inspeccion='"+frecuencia+"', Inspector='"+inspector+"'" 
+					+ "WHERE inspecciones_id='"+id+"'");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public void delete(Inspeccion inspeccion) {
+	public void delete(int id) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.delete(inspeccion);
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			PreparedStatement ps = con.prepareStatement("DELETE FROM INSPECCIONES WHERE inspecciones_id= '" +id+"'");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -246,7 +274,7 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
 			Statement s = con.createStatement();
-			ResultSet res = s.executeQuery("SELECT DISTINCT ID FROM INSPECCIONES WHERE inspector like '%" +email+"%' and F_inspeccion!=''" );
+			ResultSet res = s.executeQuery("SELECT DISTINCT inspecciones_id FROM INSPECCIONES WHERE inspector like '%" +email+"%' and F_inspeccion!=''" );
 			while(res.next()) {
 				misInspecciones.add((res.getInt(1)));
 			}

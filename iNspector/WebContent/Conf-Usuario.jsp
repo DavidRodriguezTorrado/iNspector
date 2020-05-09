@@ -359,7 +359,7 @@
           </div>
         </div>
       </div>
-      
+      <%} %>
 			<form action="FormVerTodasIncidencias">
     <div class="u-align-center u-form-group u-form-submit">
                   <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Ver todas</button>
@@ -367,7 +367,7 @@
             </div>
 			</form>
     </section>
-    <%} %>
+    
     <section class="u-border-2 u-border-white u-clearfix u-image u-shading u-section-6" id="sec-6208" data-image-width="1600" data-image-height="1067">
       <div class="u-clearfix u-sheet u-sheet-1">
 

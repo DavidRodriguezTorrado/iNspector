@@ -66,11 +66,11 @@ public class Inspector implements Serializable {
 		return inspeccioneshechas;
 	}
 
-	public Collection<Inspeccion> getInspeccionesprogramadas() {
+	public List<Inspeccion> getInspeccionesprogramadas() {
 		return inspeccionesprogramadas;
 	}
 
-	public Collection<Incidencia> getIncidenciasarevisar() {
+	public List<Incidencia> getIncidenciasarevisar() {
 		return incidenciasarevisar;
 	}
 

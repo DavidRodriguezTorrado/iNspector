@@ -101,13 +101,14 @@
       <%
         String id= request.getSession().getAttribute("ID").toString();
         String fecha= (String)request.getSession().getAttribute("Fecha");
-        String local = (String)request.getSession().getAttribute("Local");
+        String local = (String)request.getSession().getAttribute("Rotulo");
         String customer= request.getSession().getAttribute("Customer").toString();
         String inspected = (String)request.getSession().getAttribute("Inspected");
         String comentarios= (String) request.getSession().getAttribute("Comentarios");
         String resultado = (String)request.getSession().getAttribute("Resultado");
         %>
-    <section class="u-clearfix u-image u-shading u-section-1" id="sec-227a" data-image-width="150" data-image-height="99">
+    <section class="u-clearfix u-image u-shading u-section-1" id="sec-c5f0" data-image-width="1280" data-image-height="853">
+<section class="u-clearfix u-image u-shading u-section-1" id="sec-227a" data-image-width="150" data-image-height="99">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-heading-font u-text u-text-body-alt-color u-text-default u-title u-text-1">Inspección <%=id %></h1>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
@@ -168,12 +169,7 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-8">
                 <div class="u-container-layout u-valign-middle u-container-layout-8">
-                <%if(inspected.equals("no")){ %>
-                  <h5 class="u-text u-text-body-alt-color u-text-9">Su incidencia aún no ha sido revisada</h5>
-                  <%} %>
-                  <%if(inspected.equals("yes")){ %>
-                  <h5 class="u-text u-text-body-alt-color u-text-9">Su incidencia ya ha sido revisada, puede ver el resultado</h5>
-                   <%} %>
+                  <h5 class="u-text u-text-body-alt-color u-text-9">${incidencia.getInspected()}</h5>
                 </div>
               </div>
             </div>
@@ -205,25 +201,20 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-12">
                 <div class="u-container-layout u-valign-middle u-container-layout-12">
-                <%if(inspected.equals("no")){ %>
-					<h5 class="u-text u-text-body-alt-color u-text-13">En cuanto sea revisada podrá ver el resultado</h5>
-                  <%} %>
-                  <%if(inspected.equals("yes")){ %>
-					<h5 class="u-text u-text-body-alt-color u-text-13">${incidencia.getResultado()}</h5>
-                  <%} %>
-                  
+                
+					<input name="Resultado" id="Resultado" placeholder="Escriba el resultado de revisar la incidencia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" >
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <% if(reg=="inspector"){ %>
-        <form action="FormEditaIncidencia" >
-					<input type="hidden" name="incidencia" value="${item.id}" />
-					<input type="hidden" name="LOCAL" value="${item.local.getId()}" />
-        			<button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style" >Revisar Incidencia</button>
-        		</form>
-        <%} %>
+		<form action="FormEditaIncidencia">
+   	 <div class="u-align-center u-form-group u-form-submit">
+                  <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Revisar</button>
+            
+            </div>
+			</form>
 
         <div class="u-align-center u-form-group u-form-submit">
                    			<input type="button" value="Volver" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style"onclick="history.back()">                </div>

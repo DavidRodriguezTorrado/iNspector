@@ -11,7 +11,7 @@ public interface InspeccionDAO {
 	public void create(Inspeccion inspeccion);
 	public Inspeccion read(int id);
 	public void update(Inspeccion inspeccion);
-	public void delete(Inspeccion inspeccion);
+	public void delete(int id);
 	public Collection<Inspeccion> readAll();
 	public List<String> buscador(String rotulo);
 	public Inspeccion ultimaInspeccion(Inspeccion inspeccion);

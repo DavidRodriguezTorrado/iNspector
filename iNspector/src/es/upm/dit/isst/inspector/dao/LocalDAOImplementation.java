@@ -140,14 +140,16 @@ public class LocalDAOImplementation implements LocalDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
 			Statement s = con.createStatement();
-			ResultSet res = s.executeQuery("DELETE * FROM LOCALES WHERE rotulo= '" +name+"'");
-			
+			PreparedStatement ps =con.prepareStatement("DELETE FROM LOCALES WHERE rotulo= '" +name+"'");
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		session.getTransaction().commit();
 		session.close();
 	}
+
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Local> readAll() {

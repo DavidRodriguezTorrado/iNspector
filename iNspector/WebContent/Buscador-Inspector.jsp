@@ -231,7 +231,16 @@
           <br>
         </a>
     </section>
-    <section class="u-clearfix u-image u-section-2" id="sec-4c1e" data-image-width="1280" data-image-height="848">
+   <%
+        String inspeccion1= request.getSession().getAttribute("Inspeccion1").toString();
+        String inspeccion2= request.getSession().getAttribute("Inspeccion2").toString();
+        String inspeccion3= request.getSession().getAttribute("Inspeccion3").toString();
+        String inspeccion4= request.getSession().getAttribute("Inspeccion4").toString();
+        %>
+               </div>
+                <% if (!inspeccion1.equals("0")){
+     %> 
+    <section class="u-clearfix u-image u-section-2" id="sec-5771" data-image-width="1280" data-image-height="848">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-heading-font u-text u-text-default u-text-palette-4-base u-title u-text-1" data-animation-name="bounceIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Historial de inspecciones</h1>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
@@ -244,12 +253,15 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-2">
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <h5 class="u-text u-text-body-alt-color u-text-3" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-3" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion1 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <%} %>
+                <% if (!inspeccion2.equals("0")){
+     %>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-2">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -260,12 +272,14 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-4">
                 <div class="u-container-layout u-valign-middle u-container-layout-4">
-                  <h5 class="u-text u-text-body-alt-color u-text-5" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-5" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion2 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <%} %>
+                <% if (!inspeccion3.equals("0")){%>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-3">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -276,12 +290,14 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-6">
                 <div class="u-container-layout u-valign-middle u-container-layout-6">
-                  <h5 class="u-text u-text-body-alt-color u-text-7" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-7" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion3 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <%} %>
+        <% if (!inspeccion4.equals("0")){%>
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-4">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -292,81 +308,14 @@
               </div>
               <div class="u-align-center u-container-style u-grey-75 u-layout-cell u-opacity u-opacity-50 u-right-cell u-size-44 u-layout-cell-8">
                 <div class="u-container-layout u-valign-middle u-container-layout-8">
-                  <h5 class="u-text u-text-body-alt-color u-text-9" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X">"Fecha"</h5>
+                  <h5 class="u-text u-text-body-alt-color u-text-9" data-animation-name="flipIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="X"><%=inspeccion4 %></h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    
-    <section class="u-align-left u-clearfix u-section-3" id="sec-5676">
-      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Incidencias pendientes de este local</h1>
-        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-expand-resize u-layout-cell u-left-cell u-size-13 u-layout-cell-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1" src="">
-                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640"></div>
-                </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-47 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2" data-image-width="2000" data-image-height="1333">
-                  <h3 class="u-text u-text-2">Incidencia 1</h3>
-                  <p class="u-text u-text-default u-text-3">Esta incidencia ha sido reportada por "Nombre usuario"</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-align-left u-clearfix u-palette-4-light-3 u-section-4" id="sec-54ce">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-expand-resize u-layout-cell u-left-cell u-size-13 u-layout-cell-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1" src="">
-                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640"></div>
-                </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-47 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2" data-image-width="2000" data-image-height="1333">
-                  <h3 class="u-text u-text-1">Incidencia 2</h3>
-                  <p class="u-text u-text-default u-text-2">Esta incidencia ha sido reportada por "Nombre usuario"</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-align-left u-clearfix u-white u-section-5" id="sec-8e1a">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-expand-resize u-layout-cell u-left-cell u-size-13 u-layout-cell-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1" src="">
-                  <div alt="" class="u-align-left u-image u-image-circle u-image-1" data-image-width="640" data-image-height="640"></div>
-                </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-47 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2" data-image-width="2000" data-image-height="1333">
-                  <h3 class="u-text u-text-1">Incidencia 3
-                    <br>
-                  </h3>
-                  <p class="u-text u-text-default u-text-2">Esta incidencia ha sido reportada por "Nombre usuario"</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <%} %>
+        
     
     <%} %>
     <footer class="u-align-left u-clearfix u-footer u-grey-80 u-footer" id="sec-24d6"><div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">

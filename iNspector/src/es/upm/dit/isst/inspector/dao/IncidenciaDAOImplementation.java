@@ -118,7 +118,19 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 	public void update(Incidencia incidencia) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(incidencia);
+		int id = incidencia.getId();
+		String fecha = incidencia.getFecha();	
+		Inspector inspector = incidencia.getInspector();
+		String inspected = "yes";
+		String comentarios = incidencia.getComentarios();
+		String resultado = incidencia.getResultado();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			PreparedStatement ps = con.prepareStatement("UPDATE incidencias SET  inspected='"+inspected+"', resultado='"+resultado+"'WHERE id='"+id+"'");
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		session.getTransaction().commit();
 		session.close();
 	}
