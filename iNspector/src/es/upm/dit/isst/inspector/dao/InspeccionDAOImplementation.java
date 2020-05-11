@@ -286,4 +286,24 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 		return misInspecciones;
 	}
 	
+	public ArrayList<Integer> misInspeccionesMasImportantes(){
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		ArrayList<Integer> misInspecciones = new ArrayList<Integer>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test1?serverTimezone=UTC", "dbadmin", "tortuga");;
+			Statement s = con.createStatement();
+			ResultSet res = s.executeQuery("SELECT DISTINCT inspecciones_id FROM INSPECCIONES WHERE F_inspeccion!='Muy Alta'" );
+			while(res.next()) {
+				misInspecciones.add((res.getInt(1)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.getTransaction().commit();
+		session.close();
+		return misInspecciones;
+	}
+	
+	
 }

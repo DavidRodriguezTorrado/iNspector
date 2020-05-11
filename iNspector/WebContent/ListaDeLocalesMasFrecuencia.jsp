@@ -11,7 +11,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Favoritos</title>
+    <title>Revisar con mayor frecuencia</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="Conf-Administrador.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
@@ -48,6 +48,7 @@
 <%
 					HttpSession s = request.getSession();
 					String reg = (String) s.getAttribute("Registrado");
+					String localesFrecuentes = (String) s.getAttribute("localesFrecuentes");
 				%>
 				<div class="u-custom-menu u-nav-container">
 					<%
@@ -148,7 +149,7 @@
 
     <section class="u-clearfix u-image u-shading u-section-5" id="sec-462c" data-image-width="1280" data-image-height="720">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Mis favoritos</h1>
+        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Locales que necesitan sean revisado con mayor frecuencia</h1>
         <span class="u-icon u-icon-circle u-text-palette-1-base u-icon-1" data-animation-name="rubberBand" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" id="svg-0f91" class="u-svg-content"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1="0" y2="512"><stop offset="0" stop-color="#2af598"></stop><stop offset="1" stop-color="#009efd"></stop>
 </linearGradient>
@@ -158,9 +159,10 @@
 			<tr>
 				
 				<th>LOCAL</th>
+				<th> </th>
 
 			</tr>
-			<c:forEach items="${cust.getFavoritos()}" var="item">
+			<c:forEach items="<%=localesFrecuentes %>" var="item">
 				<tr>
 					
 					<td>${item.local.getRotulo()}</td>
@@ -177,7 +179,7 @@
 
       </div>
                      <div class="u-align-center u-form-group u-form-submit">
-                  <a href="Conf-Usuario.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
+                  <a href="Conf-Inspector.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
                   
                   <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>

@@ -11,7 +11,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Favoritos</title>
+    <title>Inspecciones Hechas</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="Conf-Administrador.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
@@ -148,7 +148,7 @@
 
     <section class="u-clearfix u-image u-shading u-section-5" id="sec-462c" data-image-width="1280" data-image-height="720">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Mis favoritos</h1>
+        <h1 class="u-text u-text-default u-text-palette-4-base u-text-1" data-animation-name="zoomIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">Mis inspecciones hechas</h1>
         <span class="u-icon u-icon-circle u-text-palette-1-base u-icon-1" data-animation-name="rubberBand" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" id="svg-0f91" class="u-svg-content"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1="0" y2="512"><stop offset="0" stop-color="#2af598"></stop><stop offset="1" stop-color="#009efd"></stop>
 </linearGradient>
@@ -157,18 +157,23 @@
         <table class="u-align-center">
 			<tr>
 				
-				<th>LOCAL</th>
+				<td>Fecha : </td>
+				<td>Local : </td>
+				<td>Direccion : </td>
+				<td>Opciones :</td>
 
 			</tr>
 			<c:forEach items="${cust.getFavoritos()}" var="item">
 				<tr>
 					
-					<td>${item.local.getRotulo()}</td>
-				
+					<td>${item.inspeccion.getFecha()}</td>
+					<td>${item.inspeccion.getRotulo()}</td>
+					<td>${item.inspeccion.Dirccion()}</td>
+					<td>${item.local.getRotulo()}</td>				
 					<td>
 				<form action="UltimaInspeccionDelLocalServlet" >
 					<input type="hidden" name="rotulo" value="${item.local.getRotulo()}" />
-        			<button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style" >Ver Local</button>
+        			<button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style" >Ver Inspeccion</button>
         		</form>
         		</td>
 				</tr>
@@ -177,7 +182,7 @@
 
       </div>
                      <div class="u-align-center u-form-group u-form-submit">
-                  <a href="Conf-Usuario.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
+                  <a href="Conf-Inspector.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
                   
                   <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>

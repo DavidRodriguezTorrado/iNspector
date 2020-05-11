@@ -18,6 +18,7 @@ public interface InspeccionDAO {
 	public ArrayList<Integer> inspecciones(String rotulo);
 	public ArrayList<Integer> misInspeccionesHechas(String email);
 	public ArrayList<Integer> misInspeccionesPorHacer(String email);
+	public ArrayList<Integer> misInspeccionesMasImportantes();
 
 
 }

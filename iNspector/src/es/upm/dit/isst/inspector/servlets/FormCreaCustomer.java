@@ -57,7 +57,6 @@ public class FormCreaCustomer extends HttpServlet {
 		req.getSession().setAttribute("Email", customer.getEmail());
 		req.getSession().setAttribute("Password", customer.getPassword());
 		req.getSession().setAttribute("Registrado", "si");
-		
 		ArrayList<Integer> incidenciasint= IncidenciaDAOImplementation.getInstance().misIncidencias(email);
 		ArrayList<Integer> favoritosint= FavoritoDAOImplementation.getInstance().misFavoritos(email);
 		ArrayList<Integer> ultimosint = UltimoDAOImplementation.getInstance().misUltimos(email);
@@ -193,7 +192,7 @@ public class FormCreaCustomer extends HttpServlet {
 		customer.setIncidencias(incidencias);
 		customer.setFavoritos(favoritos);
 		customer.setUltimos(ultimos);
-		req.getSession().setAttribute("Registrado", "si");
+		
 		getServletContext().getRequestDispatcher("/Conf-Usuario.jsp").forward(req,resp);
 	
 	}

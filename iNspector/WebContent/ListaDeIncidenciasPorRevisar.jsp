@@ -191,7 +191,7 @@
 
       </div>
                      <div class="u-align-center u-form-group u-form-submit">
-                  <a href="Conf-Usuario.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
+                  <a href="Conf-Inspector.jsp" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Volver</a>
                   
                   <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>

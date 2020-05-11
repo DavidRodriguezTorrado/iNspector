@@ -15,11 +15,13 @@ import java.util.List;
 import es.upm.dit.isst.inspector.dao.InspectorDAOImplementation;
 import es.upm.dit.isst.inspector.dao.CustomerDAOImplementation;
 import es.upm.dit.isst.inspector.dao.IncidenciaDAOImplementation;
+import es.upm.dit.isst.inspector.dao.InspeccionDAOImplementation;
 import es.upm.dit.isst.inspector.dao.LocalDAOImplementation;
 import es.upm.dit.isst.inspector.model.Inspector;
 import es.upm.dit.isst.inspector.model.Customer;
 import es.upm.dit.isst.inspector.model.Local;
 import es.upm.dit.isst.inspector.model.Incidencia;
+import es.upm.dit.isst.inspector.model.Inspeccion;
 /**
  * Servlet implementation class FormCreaInspector
  */
@@ -40,26 +42,23 @@ public class FormVerTodasInspeccionesProgramadas extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	String email = (String) req.getSession().getAttribute("Email");
-    	ArrayList<Integer> intInc =IncidenciaDAOImplementation.getInstance().misIncidencias(email);
-    	List <Incidencia>  misIncidencias= new ArrayList<Incidencia>();
-		Customer cust = new Customer();
+    	ArrayList<Integer> intInc =InspeccionDAOImplementation.getInstance().misInspeccionesPorHacer(email);
+    	List <Inspeccion>  misInspeccionesProgramadas= new ArrayList<Inspeccion>();
+		Inspector inspector = new Inspector();
 
 		
 		for (int i=1; i<=intInc.size(); i++){
 			int n=intInc.get(i-1);
-			Incidencia inc= IncidenciaDAOImplementation.getInstance().read(n);
-			Local l =inc.getLocal();
-			Local l2= LocalDAOImplementation.getInstance().read2(l.getId());
-			inc.setLocal(l2);
-			misIncidencias.add(inc); 
+			Inspeccion inc= InspeccionDAOImplementation.getInstance().read(n);
+			misInspeccionesProgramadas.add(inc); 
 
 		}
-		req.getSession().setAttribute("misIncidencias", misIncidencias);
+		req.getSession().setAttribute("misInspeccionesProgradas", misInspeccionesProgramadas);
     	
-		cust.setIncidencias(misIncidencias);
-		req.getSession().setAttribute("cust", cust);
-    	getServletContext().getRequestDispatcher("/ListaDeIncidencias.jsp").forward(req,resp);
-    }
+		inspector.setInspeccionesprogramadas(misInspeccionesProgramadas);
+		req.getSession().setAttribute("inspector", inspector);
+    	getServletContext().getRequestDispatcher("/ListaDeInspeccionesProgramadas.jsp").forward(req,resp);
+    	}
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

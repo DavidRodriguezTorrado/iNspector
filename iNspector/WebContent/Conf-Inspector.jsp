@@ -191,9 +191,7 @@
                   </br>
                   </br>
                   </br>
-                  </br>
-                  </br>
-                  </br>
+              
                   </p>
                   <p class="u-text u-text-3 u-align-right">
                   
@@ -223,9 +221,6 @@
                   <h3 class="u-text u-text-1">Incidencia <%=incidencia2 %></h3>
                   <a href="#" class="u-border-radius-10 u-btn u-form-control-hidden u-btn-round u-button-style u-palette-4-base u-btn-1">Ver Local</a>
                    <p class="u-text u-text-3 u-align-right">
-                  </br>
-                  </br>
-                  </br>
                   </br>
                   </br>
                   </br>
@@ -259,9 +254,7 @@
                   </br>
                   </br>
                   </br>
-                  </br>
-                  </br>
-                  </br>
+             
                   </p>
                   <p class="u-text u-text-2"><%=nameInc3 %></p>
                 </div>
@@ -462,6 +455,12 @@
             </div>
           </div>
         </div>
+           <form action="FormVerTodasInspeccionesHechas">
+            <div class="u-align-center u-form-group u-form-submit">
+                  <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Ver todas</button>
+            
+            </div>
+			</form>
         <%} %>
       </div>
     </section>
@@ -474,13 +473,10 @@
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
         </span>
       </div>
-             <form action="FormVerTodasInspeccionesHechas">
-            <div class="u-align-center u-form-group u-form-submit">
-                  <button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style">Ver todas</button>
-            
-            </div>
-			</form>
+          
     </section>
+    
+    
 <%} %>
 
      <section class="u-align-center u-clearfix u-white u-section-8" id="sec-1be9">

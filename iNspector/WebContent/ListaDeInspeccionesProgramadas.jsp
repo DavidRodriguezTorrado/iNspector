@@ -165,21 +165,21 @@
 			</tr>
 			<c:forEach items="${inspector.getInspeccionesprogramadas()}" var="item">
 				<tr>
-					<td>${item.inspeccion.getFecha()}</td>
-					<td>${item.inspeccion.getRotulo()}</td>
-					<td>${item.inspeccion.Dirccion()}</td>
-					<td>${item.local.getRotulo()}</td>
+					<td>${item.fecha}</td>
+					<td>${item.rotulo}</td>
+					<td>${item.direccion}</td>
+	
 					
 				
 					<td>
 				<form action="FormEditaInspeccionProgramada" >
-					<input type="hidden" name="id" value="${item.inspeccion.getId()}" />
+					<input type="hidden" name="id" value="${item.id}" />
         			<button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style" >Editar</button>
         		</form>
         		</td>
         		<td>
 				<form action="FormEliminaInspeccionProgramada" >
-					<input type="hidden" name="id" value="${item.inspeccion.getId()}" />
+					<input type="hidden" name="id" value="${item.id}" />
         			<button type="submit" class="u-border-radius-10 u-btn u-btn-round u-btn-submit u-button-style" >Eliminar</button>
         		</form>
         		</td>
